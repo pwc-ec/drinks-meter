@@ -1,8 +1,11 @@
 declare interface IEvent {
+  attendance: Number
   finishAt: Date
-  id :string
+  id : string
   menuBeverages: IMenuBeverage[]
+  name: string
   startAt: Date
+  url: string
 }
 
 declare interface IMenuBeverage {

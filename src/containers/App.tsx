@@ -6,9 +6,14 @@ import { withRouter } from 'react-router-dom'
 import * as routes from '../constants/routes'
 import theme from '../services/theme'
 
-import AppHeader from '../components/AppHeader'
-import BeveragesConsumption from '../containers/BeveragesConsumption'
 import Snackbar from '../containers/Snackbar'
+
+import BeveragesConsumption from '../containers/BeveragesConsumption'
+// import Control from '../containers/Control'
+// import Dashboard from '../containers/Dashboard'
+import Event from '../containers/Event'
+import Events from '../containers/Events'
+import Home from '../containers/Home'
 
 import '../css/joyride.css'
 
@@ -27,10 +32,12 @@ const PropsRoute = ({ component, ...rest }) => {
 
 const App = props => (
   <MuiThemeProvider theme={theme}>
-    <AppHeader fullname={null} />
-    <main style={{ height: `calc(100% - ${theme.bmai.appHeader.height}px)` }}>
+    <main>
       <Switch>
-        <Route path="/" component={BeveragesConsumption} />
+        <Route path="/" component={Events} exact={true} />
+        <Route path="/:eventUrl" component={Event} />
+        {/*<Route path="/:eventSlug/dashboard" component={Dashboard} />
+<Route path="/:eventSlug/control" component={Control} />*/}
       </Switch>
     </main>
     <Snackbar />

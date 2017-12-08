@@ -1,0 +1,8 @@
+fragment eventInfo on Event {
+  attendance
+  finishAt
+  id
+  name
+  startAt
+  url
+}

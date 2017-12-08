@@ -27,7 +27,7 @@ const AppHeader = ({ classes }) => {
     <AppBar className={classes.root} position="static" color="inherit">
       <Toolbar>
         <Typography type="headline" className={classes.flex}>
-          PwC - Drinks Meterß
+          PwC - Drinks Meter
         </Typography>
         {/* <div className={classes.reports}>
           <ReportMenu />
