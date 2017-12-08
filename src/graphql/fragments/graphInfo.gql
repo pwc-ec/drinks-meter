@@ -1,0 +1,10 @@
+#import './kpiInfo.gql'
+
+fragment graphInfo on Graph {
+  id
+  kpis {
+    ...kpiInfo
+  }
+  position
+  relative
+}

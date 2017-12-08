@@ -1,0 +1,7 @@
+#import '../fragments/notificationInfo.gql'
+
+query getNotifications($userId: ID!) {
+  allNotifications(filter: { user: { id: $userId } }) {
+    ...notificationInfo
+  }
+}

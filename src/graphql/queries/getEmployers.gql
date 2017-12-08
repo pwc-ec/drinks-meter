@@ -1,0 +1,6 @@
+query getEmployers {
+  allEmployers {
+    id
+    name
+  }
+}

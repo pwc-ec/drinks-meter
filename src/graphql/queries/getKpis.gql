@@ -1,0 +1,7 @@
+#import '../fragments/kpiData.gql'
+
+query getKpiData($companies: [String!], $kpis: [String!]) {
+  allKpiDatas(filter: { kpiId_in: $kpis, companyId_in: $companies }) {
+    ...kpiData
+  }
+}

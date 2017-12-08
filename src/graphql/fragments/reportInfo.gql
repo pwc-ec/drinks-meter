@@ -1,0 +1,16 @@
+#import './companyInfoAll.gql'
+#import './graphInfo.gql'
+#import './kpiInfo.gql'
+
+fragment reportInfo on Report {
+  createdAt
+  companies {
+    ...companyInfoAll
+  }
+  graphs {
+    ...graphInfo
+  }
+  id
+  name
+  updatedAt
+}

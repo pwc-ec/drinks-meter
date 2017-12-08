@@ -1,0 +1,12 @@
+{
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "mock": {
+        "url": "https://api.graph.cool/simple/v1/eventstats",
+        "headers": {
+        }
+      }
+    }
+  }
+}

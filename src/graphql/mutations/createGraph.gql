@@ -1,0 +1,7 @@
+#import '../fragments/graphInfo.gql'
+
+mutation createGraphMutation($reportId: ID!) {
+  createGraph(reportId: $reportId, position: 0, relative: false) {
+    ...graphInfo
+  }
+}

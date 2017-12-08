@@ -1,0 +1,48 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: bmai-frontend-{{ TRACK|default('stable', true) }}
+  namespace: bmai-frontend
+spec:
+  replicas: {{ REPLICAS|default(1, true) }}
+  revisionHistoryLimit: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: bmai-frontend
+        track: {{ TRACK|default('stable', true) }}
+    spec:
+      imagePullSecrets:
+        - name: ecregistry
+      containers:
+        - name: bmai-frontend
+          image: ecregistry.azurecr.io/benchmarkingai/bmai-frontend:{{ DOCKER_IMAGE_TAG }}
+          env:
+            - name: PORT
+              value: "5000"
+          ports:
+            - containerPort: 5000
+        - image: nginx:1.10-alpine
+          name: nginx
+          command:
+            - nginx
+            - -g
+            - daemon off;
+            - -c
+            - /etc/nginx/custom/nginx.conf
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: nginx-conf
+              mountPath: /etc/nginx/custom
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf

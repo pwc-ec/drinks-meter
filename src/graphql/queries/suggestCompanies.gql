@@ -1,0 +1,7 @@
+#import '../fragments/companyInfo.gql'
+
+query suggestCompanies($contains: String) {
+  allCompanies(filter: { name_contains: $contains }, orderBy: name_ASC) {
+    ...companyInfo
+  }
+}

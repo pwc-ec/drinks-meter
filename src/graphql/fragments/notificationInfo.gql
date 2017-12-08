@@ -1,0 +1,13 @@
+#import './companyInfo.gql'
+
+fragment notificationInfo on Notification {
+  changedCompanies {
+    ...companyInfo
+  }
+  createdAt
+  id
+  emailSent
+  user {
+    id
+  }
+}

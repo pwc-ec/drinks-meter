@@ -1,0 +1,4 @@
+fragment companyInfo on Company {
+  id
+  name
+}

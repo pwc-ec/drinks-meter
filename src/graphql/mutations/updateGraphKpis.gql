@@ -1,0 +1,7 @@
+#import '../fragments/graphInfo.gql'
+
+mutation updateGrqphKpis($graphId: ID!, $kpisIds: [ID!]) {
+  updateGraph(id: $graphId, kpisIds: $kpisIds) {
+    ...graphInfo
+  }
+}

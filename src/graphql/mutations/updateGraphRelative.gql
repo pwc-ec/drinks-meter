@@ -1,0 +1,6 @@
+mutation updateGraphRelative($id: ID!, $relative: Boolean!) {
+  updateGraph(id: $id, relative: $relative) {
+    id,
+    relative
+  }
+}

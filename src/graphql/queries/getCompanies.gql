@@ -1,0 +1,7 @@
+#import '../fragments/companyInfo.gql'
+
+query getCompanies {
+  allCompanies(orderBy: name_ASC) {
+    ...companyInfo
+  }
+}

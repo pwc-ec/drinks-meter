@@ -1,0 +1,5 @@
+fragment kpiInfo on Kpi {
+  id
+  name
+  unit
+}

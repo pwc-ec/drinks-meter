@@ -1,0 +1,7 @@
+#import '../fragments/reportInfo.gql'
+
+mutation createReportMutation($companiesIds: [ID!], $name: String!, $userId: ID!) {
+  createReport(companiesIds: $companiesIds, name: $name, userId: $userId) {
+    ...reportInfo
+  }
+}

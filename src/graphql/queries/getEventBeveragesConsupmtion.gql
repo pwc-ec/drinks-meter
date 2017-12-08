@@ -1,0 +1,14 @@
+query getEventBeveragesConsumption($id: ID!) {
+  Event(id: $id) {
+    menuBeverages {
+      id
+      beverage {
+        id
+        name
+      }
+      consumptions {
+        consumedAt
+      }
+    }
+  }
+}

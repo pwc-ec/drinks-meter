@@ -1,0 +1,7 @@
+#import '../fragments/reportInfo.gql'
+
+query getReport($reportId: ID!) {
+  Report(id: $reportId) {
+    ...reportInfo
+  }
+}

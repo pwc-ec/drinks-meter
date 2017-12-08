@@ -1,0 +1,9 @@
+#import './kpiInfo.gql'
+
+fragment companyInfoAll on Company {
+  id
+  name
+  kpis {
+    ...kpiInfo
+  }
+}

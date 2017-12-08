@@ -1,0 +1,29 @@
+fragment userInfo on User {
+  createdAt
+  createdBy {
+    id
+    fullname
+  }
+  employer {
+    company {
+      id
+      name
+    }
+    id
+    name
+  }
+  email
+  fullname
+  isAdmin
+  isEnabled
+  id
+  lastReport {
+    id
+    name
+  }
+  notificationCompanies {
+    id
+    name
+  }
+  updatedAt
+}

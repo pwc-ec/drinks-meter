@@ -1,0 +1,2 @@
+nginx:
+  server_name: frontend.bmai.pwc.delivery

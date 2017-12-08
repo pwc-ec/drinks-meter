@@ -1,0 +1,7 @@
+fragment kpiData on KpiData {
+  kpiId
+  companyId
+  quarter
+  year
+  value
+}

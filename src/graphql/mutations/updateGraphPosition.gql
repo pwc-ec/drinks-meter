@@ -1,0 +1,6 @@
+mutation updateGraphPosition($id: ID!, $position: Int) {
+  updateGraph(id: $id, position: $position) {
+    id
+    position
+  }
+}

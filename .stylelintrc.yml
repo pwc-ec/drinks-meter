@@ -1,0 +1,8 @@
+# Options: https://stylelint.io/user-guide/configuration/
+# Format:  https://github.com/davidtheclark/cosmiconfig#cosmiconfig
+
+extends:
+ - stylelint-config-standard
+ - stylelint-config-prettier  # Disable any formatting rules conflicting with Prettier.
+
+rules:

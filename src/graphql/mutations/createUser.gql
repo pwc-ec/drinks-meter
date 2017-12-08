@@ -1,0 +1,7 @@
+#import '../fragments/userInfo.gql'
+
+mutation createUser($fullname: String!, $email: String!, $password: String!, $employer: ID, $isAdmin: Boolean!) {
+  createUser(fullname: $fullname, email: $email, password: $password, employerId: $employer, isAdmin: $isAdmin) {
+    ...userInfo
+  }
+}

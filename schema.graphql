@@ -1,0 +1,4127 @@
+# source: https://api.graph.cool/simple/v1/bmai
+# timestamp: Wed Nov 29 2017 23:56:10 GMT+0100 (Central Europe Standard Time)
+
+enum _ModelMutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+# Meta information about the query.
+type _QueryMeta {
+  count: Int!
+}
+
+type AddToCompanyKpisPayload {
+  xNotUsed1Company: Company
+  kpisKpi: Kpi
+}
+
+type AddToEmployerCreatedByUserPayload {
+  xNotUsed2Employer: Employer
+  createdByUser: User
+}
+
+type AddToGraphsKpisPayload {
+  xNotUsed2Graph: Graph
+  kpisKpi: Kpi
+}
+
+type AddToNotificationsChangedCompaniesPayload {
+  changedCompaniesCompany: Company
+  xNotUsed4Notification: Notification
+}
+
+type AddToNotificationsUserPayload {
+  xNotUsed3Notification: Notification
+  userUser: User
+}
+
+type AddToReportGraphsPayload {
+  graphsGraph: Graph
+  reportReport: Report
+}
+
+type AddToReportsCompaniesPayload {
+  companiesCompany: Company
+  xNotUsed3Report: Report
+}
+
+type AddToReportsUserPayload {
+  xNotUsed4Report: Report
+  userUser: User
+}
+
+type AddToUsersEmployerPayload {
+  employerEmployer: Employer
+  usersUser: User
+}
+
+type AddToUsersNotificationCompaniesPayload {
+  notificationCompaniesCompany: Company
+  xNotUsed2User: User
+}
+
+type Company implements Node {
+  id: ID!
+  kpis(filter: KpiFilter, orderBy: KpiOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Kpi!]
+  name: String!
+  xNotUsed1(filter: EmployerFilter): Employer
+  xNotUsed2(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  xNotUsed3(filter: ReportFilter, orderBy: ReportOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Report!]
+  xNotUsed4(filter: NotificationFilter, orderBy: NotificationOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Notification!]
+
+  # Meta information about the query.
+  _kpisMeta(filter: KpiFilter, orderBy: KpiOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _xNotUsed2Meta(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _xNotUsed3Meta(filter: ReportFilter, orderBy: ReportOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _xNotUsed4Meta(filter: NotificationFilter, orderBy: NotificationOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+input CompanyFilter {
+  # Logical AND on all given filters.
+  AND: [CompanyFilter!]
+
+  # Logical OR on all given filters.
+  OR: [CompanyFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  kpis_every: KpiFilter
+  kpis_some: KpiFilter
+  kpis_none: KpiFilter
+  xNotUsed1: EmployerFilter
+  xNotUsed2_every: UserFilter
+  xNotUsed2_some: UserFilter
+  xNotUsed2_none: UserFilter
+  xNotUsed3_every: ReportFilter
+  xNotUsed3_some: ReportFilter
+  xNotUsed3_none: ReportFilter
+  xNotUsed4_every: NotificationFilter
+  xNotUsed4_some: NotificationFilter
+  xNotUsed4_none: NotificationFilter
+}
+
+input CompanykpisKpi {
+  name: String!
+  unit: String
+  xNotUsed1Ids: [ID!]
+  xNotUsed1: [KpixNotUsed1Company!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [KpixNotUsed2Graph!]
+}
+
+enum CompanyOrderBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type CompanyPreviousValues {
+  id: ID!
+  name: String!
+}
+
+input CompanySubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [CompanySubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [CompanySubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: CompanySubscriptionFilterNode
+}
+
+input CompanySubscriptionFilterNode {
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  kpis_every: KpiFilter
+  kpis_some: KpiFilter
+  kpis_none: KpiFilter
+  xNotUsed1: EmployerFilter
+  xNotUsed2_every: UserFilter
+  xNotUsed2_some: UserFilter
+  xNotUsed2_none: UserFilter
+  xNotUsed3_every: ReportFilter
+  xNotUsed3_some: ReportFilter
+  xNotUsed3_none: ReportFilter
+  xNotUsed4_every: NotificationFilter
+  xNotUsed4_some: NotificationFilter
+  xNotUsed4_none: NotificationFilter
+}
+
+type CompanySubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Company
+  updatedFields: [String!]
+  previousValues: CompanyPreviousValues
+}
+
+input CompanyxNotUsed1Employer {
+  name: String!
+  createdById: ID
+  createdBy: EmployercreatedByUser
+  usersIds: [ID!]
+  users: [EmployerusersUser!]
+}
+
+input CompanyxNotUsed2User {
+  email: String!
+  fullname: String
+  isAdmin: Boolean
+  isEnabled: Boolean
+  password: String
+  createdById: ID
+  createdBy: UserxNotUsed1User
+  employerId: ID
+  employer: UseremployerEmployer
+  lastReportId: ID
+  lastReport: UserlastReportReport
+  xNotUsed1Id: ID
+  xNotUsed1: UserxNotUsed1User
+  notificationCompaniesIds: [ID!]
+  notificationCompanies: [UsernotificationCompaniesCompany!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [UserxNotUsed2Employer!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [UserxNotUsed3Notification!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [UserxNotUsed4Report!]
+}
+
+input CompanyxNotUsed3Report {
+  name: String!
+  userId: ID
+  user: ReportuserUser
+  xNotUsed1Id: ID
+  xNotUsed1: ReportxNotUsed1User
+  companiesIds: [ID!]
+  companies: [ReportcompaniesCompany!]
+  graphsIds: [ID!]
+  graphs: [ReportgraphsGraph!]
+}
+
+input CompanyxNotUsed4Notification {
+  emailSent: Boolean!
+  userId: ID
+  user: NotificationuserUser
+  changedCompaniesIds: [ID!]
+  changedCompanies: [NotificationchangedCompaniesCompany!]
+}
+
+input CreateCompany {
+  name: String!
+  xNotUsed1Id: ID
+  xNotUsed1: CompanyxNotUsed1Employer
+  kpisIds: [ID!]
+  kpis: [CompanykpisKpi!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [CompanyxNotUsed2User!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [CompanyxNotUsed3Report!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [CompanyxNotUsed4Notification!]
+}
+
+input CreateEmployer {
+  name: String!
+  companyId: ID
+  company: EmployercompanyCompany
+  createdById: ID
+  createdBy: EmployercreatedByUser
+  usersIds: [ID!]
+  users: [EmployerusersUser!]
+}
+
+input CreateFile {
+  name: String!
+}
+
+input CreateGraph {
+  position: Int!
+  relative: Boolean!
+  reportId: ID
+  report: GraphreportReport
+  kpisIds: [ID!]
+  kpis: [GraphkpisKpi!]
+}
+
+input CreateKpi {
+  name: String!
+  unit: String
+  xNotUsed1Ids: [ID!]
+  xNotUsed1: [KpixNotUsed1Company!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [KpixNotUsed2Graph!]
+}
+
+input CreateKpiData {
+  companyId: String!
+  kpiId: String!
+  quarter: String!
+  value: Float!
+  year: Int!
+}
+
+input CreateNotification {
+  emailSent: Boolean!
+  userId: ID
+  user: NotificationuserUser
+  changedCompaniesIds: [ID!]
+  changedCompanies: [NotificationchangedCompaniesCompany!]
+}
+
+input CreateReport {
+  name: String!
+  userId: ID
+  user: ReportuserUser
+  xNotUsed1Id: ID
+  xNotUsed1: ReportxNotUsed1User
+  companiesIds: [ID!]
+  companies: [ReportcompaniesCompany!]
+  graphsIds: [ID!]
+  graphs: [ReportgraphsGraph!]
+}
+
+input CreateUser {
+  email: String!
+  fullname: String
+  isAdmin: Boolean
+  isEnabled: Boolean
+  password: String
+  createdById: ID
+  createdBy: UserxNotUsed1User
+  employerId: ID
+  employer: UseremployerEmployer
+  lastReportId: ID
+  lastReport: UserlastReportReport
+  xNotUsed1Id: ID
+  xNotUsed1: UserxNotUsed1User
+  notificationCompaniesIds: [ID!]
+  notificationCompanies: [UsernotificationCompaniesCompany!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [UserxNotUsed2Employer!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [UserxNotUsed3Notification!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [UserxNotUsed4Report!]
+}
+
+scalar DateTime
+
+type Employer implements Node {
+  company(filter: CompanyFilter): Company
+  createdAt: DateTime!
+  createdBy(filter: UserFilter): User
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+  users(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+
+  # Meta information about the query.
+  _usersMeta(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+input EmployercompanyCompany {
+  name: String!
+  kpisIds: [ID!]
+  kpis: [CompanykpisKpi!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [CompanyxNotUsed2User!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [CompanyxNotUsed3Report!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [CompanyxNotUsed4Notification!]
+}
+
+input EmployercreatedByUser {
+  email: String!
+  fullname: String
+  isAdmin: Boolean
+  isEnabled: Boolean
+  password: String
+  createdById: ID
+  createdBy: UserxNotUsed1User
+  employerId: ID
+  employer: UseremployerEmployer
+  lastReportId: ID
+  lastReport: UserlastReportReport
+  xNotUsed1Id: ID
+  xNotUsed1: UserxNotUsed1User
+  notificationCompaniesIds: [ID!]
+  notificationCompanies: [UsernotificationCompaniesCompany!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [UserxNotUsed2Employer!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [UserxNotUsed3Notification!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [UserxNotUsed4Report!]
+}
+
+input EmployerFilter {
+  # Logical AND on all given filters.
+  AND: [EmployerFilter!]
+
+  # Logical OR on all given filters.
+  OR: [EmployerFilter!]
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  company: CompanyFilter
+  createdBy: UserFilter
+  users_every: UserFilter
+  users_some: UserFilter
+  users_none: UserFilter
+}
+
+enum EmployerOrderBy {
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type EmployerPreviousValues {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input EmployerSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [EmployerSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [EmployerSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: EmployerSubscriptionFilterNode
+}
+
+input EmployerSubscriptionFilterNode {
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  company: CompanyFilter
+  createdBy: UserFilter
+  users_every: UserFilter
+  users_some: UserFilter
+  users_none: UserFilter
+}
+
+type EmployerSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Employer
+  updatedFields: [String!]
+  previousValues: EmployerPreviousValues
+}
+
+input EmployerusersUser {
+  email: String!
+  fullname: String
+  isAdmin: Boolean
+  isEnabled: Boolean
+  password: String
+  createdById: ID
+  createdBy: UserxNotUsed1User
+  lastReportId: ID
+  lastReport: UserlastReportReport
+  xNotUsed1Id: ID
+  xNotUsed1: UserxNotUsed1User
+  notificationCompaniesIds: [ID!]
+  notificationCompanies: [UsernotificationCompaniesCompany!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [UserxNotUsed2Employer!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [UserxNotUsed3Notification!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [UserxNotUsed4Report!]
+}
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  secret: String!
+  size: Int!
+  updatedAt: DateTime!
+  url: String!
+}
+
+input FileFilter {
+  # Logical AND on all given filters.
+  AND: [FileFilter!]
+
+  # Logical OR on all given filters.
+  OR: [FileFilter!]
+  contentType: String
+
+  # All values that are not equal to given value.
+  contentType_not: String
+
+  # All values that are contained in given list.
+  contentType_in: [String!]
+
+  # All values that are not contained in given list.
+  contentType_not_in: [String!]
+
+  # All values less than the given value.
+  contentType_lt: String
+
+  # All values less than or equal the given value.
+  contentType_lte: String
+
+  # All values greater than the given value.
+  contentType_gt: String
+
+  # All values greater than or equal the given value.
+  contentType_gte: String
+
+  # All values containing the given string.
+  contentType_contains: String
+
+  # All values not containing the given string.
+  contentType_not_contains: String
+
+  # All values starting with the given string.
+  contentType_starts_with: String
+
+  # All values not starting with the given string.
+  contentType_not_starts_with: String
+
+  # All values ending with the given string.
+  contentType_ends_with: String
+
+  # All values not ending with the given string.
+  contentType_not_ends_with: String
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  secret: String
+
+  # All values that are not equal to given value.
+  secret_not: String
+
+  # All values that are contained in given list.
+  secret_in: [String!]
+
+  # All values that are not contained in given list.
+  secret_not_in: [String!]
+
+  # All values less than the given value.
+  secret_lt: String
+
+  # All values less than or equal the given value.
+  secret_lte: String
+
+  # All values greater than the given value.
+  secret_gt: String
+
+  # All values greater than or equal the given value.
+  secret_gte: String
+
+  # All values containing the given string.
+  secret_contains: String
+
+  # All values not containing the given string.
+  secret_not_contains: String
+
+  # All values starting with the given string.
+  secret_starts_with: String
+
+  # All values not starting with the given string.
+  secret_not_starts_with: String
+
+  # All values ending with the given string.
+  secret_ends_with: String
+
+  # All values not ending with the given string.
+  secret_not_ends_with: String
+  size: Int
+
+  # All values that are not equal to given value.
+  size_not: Int
+
+  # All values that are contained in given list.
+  size_in: [Int!]
+
+  # All values that are not contained in given list.
+  size_not_in: [Int!]
+
+  # All values less than the given value.
+  size_lt: Int
+
+  # All values less than or equal the given value.
+  size_lte: Int
+
+  # All values greater than the given value.
+  size_gt: Int
+
+  # All values greater than or equal the given value.
+  size_gte: Int
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  url: String
+
+  # All values that are not equal to given value.
+  url_not: String
+
+  # All values that are contained in given list.
+  url_in: [String!]
+
+  # All values that are not contained in given list.
+  url_not_in: [String!]
+
+  # All values less than the given value.
+  url_lt: String
+
+  # All values less than or equal the given value.
+  url_lte: String
+
+  # All values greater than the given value.
+  url_gt: String
+
+  # All values greater than or equal the given value.
+  url_gte: String
+
+  # All values containing the given string.
+  url_contains: String
+
+  # All values not containing the given string.
+  url_not_contains: String
+
+  # All values starting with the given string.
+  url_starts_with: String
+
+  # All values not starting with the given string.
+  url_not_starts_with: String
+
+  # All values ending with the given string.
+  url_ends_with: String
+
+  # All values not ending with the given string.
+  url_not_ends_with: String
+}
+
+enum FileOrderBy {
+  contentType_ASC
+  contentType_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  secret_ASC
+  secret_DESC
+  size_ASC
+  size_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  url_ASC
+  url_DESC
+}
+
+type FilePreviousValues {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  secret: String!
+  size: Int!
+  updatedAt: DateTime!
+  url: String!
+}
+
+input FileSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [FileSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [FileSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: FileSubscriptionFilterNode
+}
+
+input FileSubscriptionFilterNode {
+  contentType: String
+
+  # All values that are not equal to given value.
+  contentType_not: String
+
+  # All values that are contained in given list.
+  contentType_in: [String!]
+
+  # All values that are not contained in given list.
+  contentType_not_in: [String!]
+
+  # All values less than the given value.
+  contentType_lt: String
+
+  # All values less than or equal the given value.
+  contentType_lte: String
+
+  # All values greater than the given value.
+  contentType_gt: String
+
+  # All values greater than or equal the given value.
+  contentType_gte: String
+
+  # All values containing the given string.
+  contentType_contains: String
+
+  # All values not containing the given string.
+  contentType_not_contains: String
+
+  # All values starting with the given string.
+  contentType_starts_with: String
+
+  # All values not starting with the given string.
+  contentType_not_starts_with: String
+
+  # All values ending with the given string.
+  contentType_ends_with: String
+
+  # All values not ending with the given string.
+  contentType_not_ends_with: String
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  secret: String
+
+  # All values that are not equal to given value.
+  secret_not: String
+
+  # All values that are contained in given list.
+  secret_in: [String!]
+
+  # All values that are not contained in given list.
+  secret_not_in: [String!]
+
+  # All values less than the given value.
+  secret_lt: String
+
+  # All values less than or equal the given value.
+  secret_lte: String
+
+  # All values greater than the given value.
+  secret_gt: String
+
+  # All values greater than or equal the given value.
+  secret_gte: String
+
+  # All values containing the given string.
+  secret_contains: String
+
+  # All values not containing the given string.
+  secret_not_contains: String
+
+  # All values starting with the given string.
+  secret_starts_with: String
+
+  # All values not starting with the given string.
+  secret_not_starts_with: String
+
+  # All values ending with the given string.
+  secret_ends_with: String
+
+  # All values not ending with the given string.
+  secret_not_ends_with: String
+  size: Int
+
+  # All values that are not equal to given value.
+  size_not: Int
+
+  # All values that are contained in given list.
+  size_in: [Int!]
+
+  # All values that are not contained in given list.
+  size_not_in: [Int!]
+
+  # All values less than the given value.
+  size_lt: Int
+
+  # All values less than or equal the given value.
+  size_lte: Int
+
+  # All values greater than the given value.
+  size_gt: Int
+
+  # All values greater than or equal the given value.
+  size_gte: Int
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  url: String
+
+  # All values that are not equal to given value.
+  url_not: String
+
+  # All values that are contained in given list.
+  url_in: [String!]
+
+  # All values that are not contained in given list.
+  url_not_in: [String!]
+
+  # All values less than the given value.
+  url_lt: String
+
+  # All values less than or equal the given value.
+  url_lte: String
+
+  # All values greater than the given value.
+  url_gt: String
+
+  # All values greater than or equal the given value.
+  url_gte: String
+
+  # All values containing the given string.
+  url_contains: String
+
+  # All values not containing the given string.
+  url_not_contains: String
+
+  # All values starting with the given string.
+  url_starts_with: String
+
+  # All values not starting with the given string.
+  url_not_starts_with: String
+
+  # All values ending with the given string.
+  url_ends_with: String
+
+  # All values not ending with the given string.
+  url_not_ends_with: String
+}
+
+type FileSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: File
+  updatedFields: [String!]
+  previousValues: FilePreviousValues
+}
+
+type Graph implements Node {
+  id: ID!
+  kpis(filter: KpiFilter, orderBy: KpiOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Kpi!]
+  position: Int!
+  relative: Boolean!
+  report(filter: ReportFilter): Report!
+
+  # Meta information about the query.
+  _kpisMeta(filter: KpiFilter, orderBy: KpiOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+input GraphFilter {
+  # Logical AND on all given filters.
+  AND: [GraphFilter!]
+
+  # Logical OR on all given filters.
+  OR: [GraphFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  position: Int
+
+  # All values that are not equal to given value.
+  position_not: Int
+
+  # All values that are contained in given list.
+  position_in: [Int!]
+
+  # All values that are not contained in given list.
+  position_not_in: [Int!]
+
+  # All values less than the given value.
+  position_lt: Int
+
+  # All values less than or equal the given value.
+  position_lte: Int
+
+  # All values greater than the given value.
+  position_gt: Int
+
+  # All values greater than or equal the given value.
+  position_gte: Int
+  relative: Boolean
+
+  # All values that are not equal to given value.
+  relative_not: Boolean
+  kpis_every: KpiFilter
+  kpis_some: KpiFilter
+  kpis_none: KpiFilter
+  report: ReportFilter
+}
+
+input GraphkpisKpi {
+  name: String!
+  unit: String
+  xNotUsed1Ids: [ID!]
+  xNotUsed1: [KpixNotUsed1Company!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [KpixNotUsed2Graph!]
+}
+
+enum GraphOrderBy {
+  id_ASC
+  id_DESC
+  position_ASC
+  position_DESC
+  relative_ASC
+  relative_DESC
+}
+
+type GraphPreviousValues {
+  id: ID!
+  position: Int!
+  relative: Boolean!
+}
+
+input GraphreportReport {
+  name: String!
+  userId: ID
+  user: ReportuserUser
+  xNotUsed1Id: ID
+  xNotUsed1: ReportxNotUsed1User
+  companiesIds: [ID!]
+  companies: [ReportcompaniesCompany!]
+  graphsIds: [ID!]
+  graphs: [ReportgraphsGraph!]
+}
+
+input GraphSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [GraphSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [GraphSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: GraphSubscriptionFilterNode
+}
+
+input GraphSubscriptionFilterNode {
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  position: Int
+
+  # All values that are not equal to given value.
+  position_not: Int
+
+  # All values that are contained in given list.
+  position_in: [Int!]
+
+  # All values that are not contained in given list.
+  position_not_in: [Int!]
+
+  # All values less than the given value.
+  position_lt: Int
+
+  # All values less than or equal the given value.
+  position_lte: Int
+
+  # All values greater than the given value.
+  position_gt: Int
+
+  # All values greater than or equal the given value.
+  position_gte: Int
+  relative: Boolean
+
+  # All values that are not equal to given value.
+  relative_not: Boolean
+  kpis_every: KpiFilter
+  kpis_some: KpiFilter
+  kpis_none: KpiFilter
+  report: ReportFilter
+}
+
+type GraphSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Graph
+  updatedFields: [String!]
+  previousValues: GraphPreviousValues
+}
+
+type Kpi implements Node {
+  id: ID!
+  name: String!
+  unit: String
+  xNotUsed1(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Company!]
+  xNotUsed2(filter: GraphFilter, orderBy: GraphOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Graph!]
+
+  # Meta information about the query.
+  _xNotUsed1Meta(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _xNotUsed2Meta(filter: GraphFilter, orderBy: GraphOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+type KpiData implements Node {
+  companyId: String!
+  id: ID!
+  kpiId: String!
+  quarter: String!
+  value: Float!
+  year: Int!
+}
+
+input KpiDataFilter {
+  # Logical AND on all given filters.
+  AND: [KpiDataFilter!]
+
+  # Logical OR on all given filters.
+  OR: [KpiDataFilter!]
+  companyId: String
+
+  # All values that are not equal to given value.
+  companyId_not: String
+
+  # All values that are contained in given list.
+  companyId_in: [String!]
+
+  # All values that are not contained in given list.
+  companyId_not_in: [String!]
+
+  # All values less than the given value.
+  companyId_lt: String
+
+  # All values less than or equal the given value.
+  companyId_lte: String
+
+  # All values greater than the given value.
+  companyId_gt: String
+
+  # All values greater than or equal the given value.
+  companyId_gte: String
+
+  # All values containing the given string.
+  companyId_contains: String
+
+  # All values not containing the given string.
+  companyId_not_contains: String
+
+  # All values starting with the given string.
+  companyId_starts_with: String
+
+  # All values not starting with the given string.
+  companyId_not_starts_with: String
+
+  # All values ending with the given string.
+  companyId_ends_with: String
+
+  # All values not ending with the given string.
+  companyId_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  kpiId: String
+
+  # All values that are not equal to given value.
+  kpiId_not: String
+
+  # All values that are contained in given list.
+  kpiId_in: [String!]
+
+  # All values that are not contained in given list.
+  kpiId_not_in: [String!]
+
+  # All values less than the given value.
+  kpiId_lt: String
+
+  # All values less than or equal the given value.
+  kpiId_lte: String
+
+  # All values greater than the given value.
+  kpiId_gt: String
+
+  # All values greater than or equal the given value.
+  kpiId_gte: String
+
+  # All values containing the given string.
+  kpiId_contains: String
+
+  # All values not containing the given string.
+  kpiId_not_contains: String
+
+  # All values starting with the given string.
+  kpiId_starts_with: String
+
+  # All values not starting with the given string.
+  kpiId_not_starts_with: String
+
+  # All values ending with the given string.
+  kpiId_ends_with: String
+
+  # All values not ending with the given string.
+  kpiId_not_ends_with: String
+  quarter: String
+
+  # All values that are not equal to given value.
+  quarter_not: String
+
+  # All values that are contained in given list.
+  quarter_in: [String!]
+
+  # All values that are not contained in given list.
+  quarter_not_in: [String!]
+
+  # All values less than the given value.
+  quarter_lt: String
+
+  # All values less than or equal the given value.
+  quarter_lte: String
+
+  # All values greater than the given value.
+  quarter_gt: String
+
+  # All values greater than or equal the given value.
+  quarter_gte: String
+
+  # All values containing the given string.
+  quarter_contains: String
+
+  # All values not containing the given string.
+  quarter_not_contains: String
+
+  # All values starting with the given string.
+  quarter_starts_with: String
+
+  # All values not starting with the given string.
+  quarter_not_starts_with: String
+
+  # All values ending with the given string.
+  quarter_ends_with: String
+
+  # All values not ending with the given string.
+  quarter_not_ends_with: String
+  value: Float
+
+  # All values that are not equal to given value.
+  value_not: Float
+
+  # All values that are contained in given list.
+  value_in: [Float!]
+
+  # All values that are not contained in given list.
+  value_not_in: [Float!]
+
+  # All values less than the given value.
+  value_lt: Float
+
+  # All values less than or equal the given value.
+  value_lte: Float
+
+  # All values greater than the given value.
+  value_gt: Float
+
+  # All values greater than or equal the given value.
+  value_gte: Float
+  year: Int
+
+  # All values that are not equal to given value.
+  year_not: Int
+
+  # All values that are contained in given list.
+  year_in: [Int!]
+
+  # All values that are not contained in given list.
+  year_not_in: [Int!]
+
+  # All values less than the given value.
+  year_lt: Int
+
+  # All values less than or equal the given value.
+  year_lte: Int
+
+  # All values greater than the given value.
+  year_gt: Int
+
+  # All values greater than or equal the given value.
+  year_gte: Int
+}
+
+enum KpiDataOrderBy {
+  companyId_ASC
+  companyId_DESC
+  id_ASC
+  id_DESC
+  kpiId_ASC
+  kpiId_DESC
+  quarter_ASC
+  quarter_DESC
+  value_ASC
+  value_DESC
+  year_ASC
+  year_DESC
+}
+
+type KpiDataPreviousValues {
+  companyId: String!
+  id: ID!
+  kpiId: String!
+  quarter: String!
+  value: Float!
+  year: Int!
+}
+
+input KpiDataSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [KpiDataSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [KpiDataSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: KpiDataSubscriptionFilterNode
+}
+
+input KpiDataSubscriptionFilterNode {
+  companyId: String
+
+  # All values that are not equal to given value.
+  companyId_not: String
+
+  # All values that are contained in given list.
+  companyId_in: [String!]
+
+  # All values that are not contained in given list.
+  companyId_not_in: [String!]
+
+  # All values less than the given value.
+  companyId_lt: String
+
+  # All values less than or equal the given value.
+  companyId_lte: String
+
+  # All values greater than the given value.
+  companyId_gt: String
+
+  # All values greater than or equal the given value.
+  companyId_gte: String
+
+  # All values containing the given string.
+  companyId_contains: String
+
+  # All values not containing the given string.
+  companyId_not_contains: String
+
+  # All values starting with the given string.
+  companyId_starts_with: String
+
+  # All values not starting with the given string.
+  companyId_not_starts_with: String
+
+  # All values ending with the given string.
+  companyId_ends_with: String
+
+  # All values not ending with the given string.
+  companyId_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  kpiId: String
+
+  # All values that are not equal to given value.
+  kpiId_not: String
+
+  # All values that are contained in given list.
+  kpiId_in: [String!]
+
+  # All values that are not contained in given list.
+  kpiId_not_in: [String!]
+
+  # All values less than the given value.
+  kpiId_lt: String
+
+  # All values less than or equal the given value.
+  kpiId_lte: String
+
+  # All values greater than the given value.
+  kpiId_gt: String
+
+  # All values greater than or equal the given value.
+  kpiId_gte: String
+
+  # All values containing the given string.
+  kpiId_contains: String
+
+  # All values not containing the given string.
+  kpiId_not_contains: String
+
+  # All values starting with the given string.
+  kpiId_starts_with: String
+
+  # All values not starting with the given string.
+  kpiId_not_starts_with: String
+
+  # All values ending with the given string.
+  kpiId_ends_with: String
+
+  # All values not ending with the given string.
+  kpiId_not_ends_with: String
+  quarter: String
+
+  # All values that are not equal to given value.
+  quarter_not: String
+
+  # All values that are contained in given list.
+  quarter_in: [String!]
+
+  # All values that are not contained in given list.
+  quarter_not_in: [String!]
+
+  # All values less than the given value.
+  quarter_lt: String
+
+  # All values less than or equal the given value.
+  quarter_lte: String
+
+  # All values greater than the given value.
+  quarter_gt: String
+
+  # All values greater than or equal the given value.
+  quarter_gte: String
+
+  # All values containing the given string.
+  quarter_contains: String
+
+  # All values not containing the given string.
+  quarter_not_contains: String
+
+  # All values starting with the given string.
+  quarter_starts_with: String
+
+  # All values not starting with the given string.
+  quarter_not_starts_with: String
+
+  # All values ending with the given string.
+  quarter_ends_with: String
+
+  # All values not ending with the given string.
+  quarter_not_ends_with: String
+  value: Float
+
+  # All values that are not equal to given value.
+  value_not: Float
+
+  # All values that are contained in given list.
+  value_in: [Float!]
+
+  # All values that are not contained in given list.
+  value_not_in: [Float!]
+
+  # All values less than the given value.
+  value_lt: Float
+
+  # All values less than or equal the given value.
+  value_lte: Float
+
+  # All values greater than the given value.
+  value_gt: Float
+
+  # All values greater than or equal the given value.
+  value_gte: Float
+  year: Int
+
+  # All values that are not equal to given value.
+  year_not: Int
+
+  # All values that are contained in given list.
+  year_in: [Int!]
+
+  # All values that are not contained in given list.
+  year_not_in: [Int!]
+
+  # All values less than the given value.
+  year_lt: Int
+
+  # All values less than or equal the given value.
+  year_lte: Int
+
+  # All values greater than the given value.
+  year_gt: Int
+
+  # All values greater than or equal the given value.
+  year_gte: Int
+}
+
+type KpiDataSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: KpiData
+  updatedFields: [String!]
+  previousValues: KpiDataPreviousValues
+}
+
+input KpiFilter {
+  # Logical AND on all given filters.
+  AND: [KpiFilter!]
+
+  # Logical OR on all given filters.
+  OR: [KpiFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  unit: String
+
+  # All values that are not equal to given value.
+  unit_not: String
+
+  # All values that are contained in given list.
+  unit_in: [String!]
+
+  # All values that are not contained in given list.
+  unit_not_in: [String!]
+
+  # All values less than the given value.
+  unit_lt: String
+
+  # All values less than or equal the given value.
+  unit_lte: String
+
+  # All values greater than the given value.
+  unit_gt: String
+
+  # All values greater than or equal the given value.
+  unit_gte: String
+
+  # All values containing the given string.
+  unit_contains: String
+
+  # All values not containing the given string.
+  unit_not_contains: String
+
+  # All values starting with the given string.
+  unit_starts_with: String
+
+  # All values not starting with the given string.
+  unit_not_starts_with: String
+
+  # All values ending with the given string.
+  unit_ends_with: String
+
+  # All values not ending with the given string.
+  unit_not_ends_with: String
+  xNotUsed1_every: CompanyFilter
+  xNotUsed1_some: CompanyFilter
+  xNotUsed1_none: CompanyFilter
+  xNotUsed2_every: GraphFilter
+  xNotUsed2_some: GraphFilter
+  xNotUsed2_none: GraphFilter
+}
+
+enum KpiOrderBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  unit_ASC
+  unit_DESC
+}
+
+type KpiPreviousValues {
+  id: ID!
+  name: String!
+  unit: String
+}
+
+input KpiSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [KpiSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [KpiSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: KpiSubscriptionFilterNode
+}
+
+input KpiSubscriptionFilterNode {
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  unit: String
+
+  # All values that are not equal to given value.
+  unit_not: String
+
+  # All values that are contained in given list.
+  unit_in: [String!]
+
+  # All values that are not contained in given list.
+  unit_not_in: [String!]
+
+  # All values less than the given value.
+  unit_lt: String
+
+  # All values less than or equal the given value.
+  unit_lte: String
+
+  # All values greater than the given value.
+  unit_gt: String
+
+  # All values greater than or equal the given value.
+  unit_gte: String
+
+  # All values containing the given string.
+  unit_contains: String
+
+  # All values not containing the given string.
+  unit_not_contains: String
+
+  # All values starting with the given string.
+  unit_starts_with: String
+
+  # All values not starting with the given string.
+  unit_not_starts_with: String
+
+  # All values ending with the given string.
+  unit_ends_with: String
+
+  # All values not ending with the given string.
+  unit_not_ends_with: String
+  xNotUsed1_every: CompanyFilter
+  xNotUsed1_some: CompanyFilter
+  xNotUsed1_none: CompanyFilter
+  xNotUsed2_every: GraphFilter
+  xNotUsed2_some: GraphFilter
+  xNotUsed2_none: GraphFilter
+}
+
+type KpiSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Kpi
+  updatedFields: [String!]
+  previousValues: KpiPreviousValues
+}
+
+input KpixNotUsed1Company {
+  name: String!
+  xNotUsed1Id: ID
+  xNotUsed1: CompanyxNotUsed1Employer
+  kpisIds: [ID!]
+  kpis: [CompanykpisKpi!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [CompanyxNotUsed2User!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [CompanyxNotUsed3Report!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [CompanyxNotUsed4Notification!]
+}
+
+input KpixNotUsed2Graph {
+  position: Int!
+  relative: Boolean!
+  reportId: ID
+  report: GraphreportReport
+  kpisIds: [ID!]
+  kpis: [GraphkpisKpi!]
+}
+
+type Mutation {
+  createCompany(name: String!, xNotUsed1Id: ID, xNotUsed1: CompanyxNotUsed1Employer, kpisIds: [ID!], kpis: [CompanykpisKpi!], xNotUsed2Ids: [ID!], xNotUsed2: [CompanyxNotUsed2User!], xNotUsed3Ids: [ID!], xNotUsed3: [CompanyxNotUsed3Report!], xNotUsed4Ids: [ID!], xNotUsed4: [CompanyxNotUsed4Notification!]): Company
+  createEmployer(name: String!, companyId: ID, company: EmployercompanyCompany, createdById: ID, createdBy: EmployercreatedByUser, usersIds: [ID!], users: [EmployerusersUser!]): Employer
+  createFile(name: String!): File
+  createGraph(position: Int!, relative: Boolean!, reportId: ID, report: GraphreportReport, kpisIds: [ID!], kpis: [GraphkpisKpi!]): Graph
+  createKpi(name: String!, unit: String, xNotUsed1Ids: [ID!], xNotUsed1: [KpixNotUsed1Company!], xNotUsed2Ids: [ID!], xNotUsed2: [KpixNotUsed2Graph!]): Kpi
+  createKpiData(companyId: String!, kpiId: String!, quarter: String!, value: Float!, year: Int!): KpiData
+  createNotification(emailSent: Boolean!, userId: ID, user: NotificationuserUser, changedCompaniesIds: [ID!], changedCompanies: [NotificationchangedCompaniesCompany!]): Notification
+  createReport(name: String!, userId: ID, user: ReportuserUser, xNotUsed1Id: ID, xNotUsed1: ReportxNotUsed1User, companiesIds: [ID!], companies: [ReportcompaniesCompany!], graphsIds: [ID!], graphs: [ReportgraphsGraph!]): Report
+  updateCompany(id: ID!, name: String, xNotUsed1Id: ID, xNotUsed1: CompanyxNotUsed1Employer, kpisIds: [ID!], kpis: [CompanykpisKpi!], xNotUsed2Ids: [ID!], xNotUsed2: [CompanyxNotUsed2User!], xNotUsed3Ids: [ID!], xNotUsed3: [CompanyxNotUsed3Report!], xNotUsed4Ids: [ID!], xNotUsed4: [CompanyxNotUsed4Notification!]): Company
+  updateEmployer(id: ID!, name: String, companyId: ID, company: EmployercompanyCompany, createdById: ID, createdBy: EmployercreatedByUser, usersIds: [ID!], users: [EmployerusersUser!]): Employer
+  updateFile(id: ID!, name: String): File
+  updateGraph(id: ID!, position: Int, relative: Boolean, reportId: ID, report: GraphreportReport, kpisIds: [ID!], kpis: [GraphkpisKpi!]): Graph
+  updateKpi(id: ID!, name: String, unit: String, xNotUsed1Ids: [ID!], xNotUsed1: [KpixNotUsed1Company!], xNotUsed2Ids: [ID!], xNotUsed2: [KpixNotUsed2Graph!]): Kpi
+  updateKpiData(companyId: String, id: ID!, kpiId: String, quarter: String, value: Float, year: Int): KpiData
+  updateNotification(emailSent: Boolean, id: ID!, userId: ID, user: NotificationuserUser, changedCompaniesIds: [ID!], changedCompanies: [NotificationchangedCompaniesCompany!]): Notification
+  updateReport(id: ID!, name: String, userId: ID, user: ReportuserUser, xNotUsed1Id: ID, xNotUsed1: ReportxNotUsed1User, companiesIds: [ID!], companies: [ReportcompaniesCompany!], graphsIds: [ID!], graphs: [ReportgraphsGraph!]): Report
+  updateUser(email: String, fullname: String, id: ID!, isAdmin: Boolean, isEnabled: Boolean, password: String, createdById: ID, createdBy: UserxNotUsed1User, employerId: ID, employer: UseremployerEmployer, lastReportId: ID, lastReport: UserlastReportReport, xNotUsed1Id: ID, xNotUsed1: UserxNotUsed1User, notificationCompaniesIds: [ID!], notificationCompanies: [UsernotificationCompaniesCompany!], xNotUsed2Ids: [ID!], xNotUsed2: [UserxNotUsed2Employer!], xNotUsed3Ids: [ID!], xNotUsed3: [UserxNotUsed3Notification!], xNotUsed4Ids: [ID!], xNotUsed4: [UserxNotUsed4Report!]): User
+  updateOrCreateCompany(update: UpdateCompany!, create: CreateCompany!): Company
+  updateOrCreateEmployer(update: UpdateEmployer!, create: CreateEmployer!): Employer
+  updateOrCreateFile(update: UpdateFile!, create: CreateFile!): File
+  updateOrCreateGraph(update: UpdateGraph!, create: CreateGraph!): Graph
+  updateOrCreateKpi(update: UpdateKpi!, create: CreateKpi!): Kpi
+  updateOrCreateKpiData(update: UpdateKpiData!, create: CreateKpiData!): KpiData
+  updateOrCreateNotification(update: UpdateNotification!, create: CreateNotification!): Notification
+  updateOrCreateReport(update: UpdateReport!, create: CreateReport!): Report
+  updateOrCreateUser(update: UpdateUser!, create: CreateUser!): User
+  deleteCompany(id: ID!): Company
+  deleteEmployer(id: ID!): Employer
+  deleteFile(id: ID!): File
+  deleteGraph(id: ID!): Graph
+  deleteKpi(id: ID!): Kpi
+  deleteKpiData(id: ID!): KpiData
+  deleteNotification(id: ID!): Notification
+  deleteReport(id: ID!): Report
+  deleteUser(id: ID!): User
+  setEmployerCompany(xNotUsed1EmployerId: ID!, companyCompanyId: ID!): SetEmployerCompanyPayload
+  setUserCreatedByUser(createdByUserId: ID!, xNotUsed1UserId: ID!): SetUserCreatedByUserPayload
+  setUserLastReport(xNotUsed1UserId: ID!, lastReportReportId: ID!): SetUserLastReportPayload
+  unsetEmployerCompany(xNotUsed1EmployerId: ID!, companyCompanyId: ID!): UnsetEmployerCompanyPayload
+  unsetUserCreatedByUser(createdByUserId: ID!, xNotUsed1UserId: ID!): UnsetUserCreatedByUserPayload
+  unsetUserLastReport(xNotUsed1UserId: ID!, lastReportReportId: ID!): UnsetUserLastReportPayload
+  addToCompanyKpis(kpisKpiId: ID!, xNotUsed1CompanyId: ID!): AddToCompanyKpisPayload
+  addToEmployerCreatedByUser(createdByUserId: ID!, xNotUsed2EmployerId: ID!): AddToEmployerCreatedByUserPayload
+  addToGraphsKpis(kpisKpiId: ID!, xNotUsed2GraphId: ID!): AddToGraphsKpisPayload
+  addToNotificationsChangedCompanies(xNotUsed4NotificationId: ID!, changedCompaniesCompanyId: ID!): AddToNotificationsChangedCompaniesPayload
+  addToNotificationsUser(userUserId: ID!, xNotUsed3NotificationId: ID!): AddToNotificationsUserPayload
+  addToReportGraphs(reportReportId: ID!, graphsGraphId: ID!): AddToReportGraphsPayload
+  addToReportsCompanies(xNotUsed3ReportId: ID!, companiesCompanyId: ID!): AddToReportsCompaniesPayload
+  addToReportsUser(userUserId: ID!, xNotUsed4ReportId: ID!): AddToReportsUserPayload
+  addToUsersEmployer(usersUserId: ID!, employerEmployerId: ID!): AddToUsersEmployerPayload
+  addToUsersNotificationCompanies(xNotUsed2UserId: ID!, notificationCompaniesCompanyId: ID!): AddToUsersNotificationCompaniesPayload
+  removeFromCompanyKpis(kpisKpiId: ID!, xNotUsed1CompanyId: ID!): RemoveFromCompanyKpisPayload
+  removeFromEmployerCreatedByUser(createdByUserId: ID!, xNotUsed2EmployerId: ID!): RemoveFromEmployerCreatedByUserPayload
+  removeFromGraphsKpis(kpisKpiId: ID!, xNotUsed2GraphId: ID!): RemoveFromGraphsKpisPayload
+  removeFromNotificationsChangedCompanies(xNotUsed4NotificationId: ID!, changedCompaniesCompanyId: ID!): RemoveFromNotificationsChangedCompaniesPayload
+  removeFromReportsCompanies(xNotUsed3ReportId: ID!, companiesCompanyId: ID!): RemoveFromReportsCompaniesPayload
+  removeFromUsersEmployer(usersUserId: ID!, employerEmployerId: ID!): RemoveFromUsersEmployerPayload
+  removeFromUsersNotificationCompanies(xNotUsed2UserId: ID!, notificationCompaniesCompanyId: ID!): RemoveFromUsersNotificationCompaniesPayload
+  createUser(email: String!, fullname: String, isAdmin: Boolean, isEnabled: Boolean, password: String, createdById: ID, createdBy: UserxNotUsed1User, employerId: ID, employer: UseremployerEmployer, lastReportId: ID, lastReport: UserlastReportReport, xNotUsed1Id: ID, xNotUsed1: UserxNotUsed1User, notificationCompaniesIds: [ID!], notificationCompanies: [UsernotificationCompaniesCompany!], xNotUsed2Ids: [ID!], xNotUsed2: [UserxNotUsed2Employer!], xNotUsed3Ids: [ID!], xNotUsed3: [UserxNotUsed3Notification!], xNotUsed4Ids: [ID!], xNotUsed4: [UserxNotUsed4Report!]): User
+
+  # signIn
+  signIn(email: String!, password: String!): SignInPayload
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+type Notification implements Node {
+  changedCompanies(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Company!]
+  createdAt: DateTime!
+  emailSent: Boolean!
+  id: ID!
+  user(filter: UserFilter): User!
+
+  # Meta information about the query.
+  _changedCompaniesMeta(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+input NotificationchangedCompaniesCompany {
+  name: String!
+  xNotUsed1Id: ID
+  xNotUsed1: CompanyxNotUsed1Employer
+  kpisIds: [ID!]
+  kpis: [CompanykpisKpi!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [CompanyxNotUsed2User!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [CompanyxNotUsed3Report!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [CompanyxNotUsed4Notification!]
+}
+
+input NotificationFilter {
+  # Logical AND on all given filters.
+  AND: [NotificationFilter!]
+
+  # Logical OR on all given filters.
+  OR: [NotificationFilter!]
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  emailSent: Boolean
+
+  # All values that are not equal to given value.
+  emailSent_not: Boolean
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  changedCompanies_every: CompanyFilter
+  changedCompanies_some: CompanyFilter
+  changedCompanies_none: CompanyFilter
+  user: UserFilter
+}
+
+enum NotificationOrderBy {
+  createdAt_ASC
+  createdAt_DESC
+  emailSent_ASC
+  emailSent_DESC
+  id_ASC
+  id_DESC
+}
+
+type NotificationPreviousValues {
+  createdAt: DateTime!
+  emailSent: Boolean!
+  id: ID!
+}
+
+input NotificationSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [NotificationSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [NotificationSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: NotificationSubscriptionFilterNode
+}
+
+input NotificationSubscriptionFilterNode {
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  emailSent: Boolean
+
+  # All values that are not equal to given value.
+  emailSent_not: Boolean
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  changedCompanies_every: CompanyFilter
+  changedCompanies_some: CompanyFilter
+  changedCompanies_none: CompanyFilter
+  user: UserFilter
+}
+
+type NotificationSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Notification
+  updatedFields: [String!]
+  previousValues: NotificationPreviousValues
+}
+
+input NotificationuserUser {
+  email: String!
+  fullname: String
+  isAdmin: Boolean
+  isEnabled: Boolean
+  password: String
+  createdById: ID
+  createdBy: UserxNotUsed1User
+  employerId: ID
+  employer: UseremployerEmployer
+  lastReportId: ID
+  lastReport: UserlastReportReport
+  xNotUsed1Id: ID
+  xNotUsed1: UserxNotUsed1User
+  notificationCompaniesIds: [ID!]
+  notificationCompanies: [UsernotificationCompaniesCompany!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [UserxNotUsed2Employer!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [UserxNotUsed3Notification!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [UserxNotUsed4Report!]
+}
+
+# pdfMetadataPayload
+type pdfMetadataPayload {
+  name: String!
+  page: Int!
+  x: Int
+  y: Int
+  veight: Int
+  height: Int
+  base64: String
+}
+
+type Query {
+  allCompanies(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Company!]!
+  allEmployers(filter: EmployerFilter, orderBy: EmployerOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Employer!]!
+  allFiles(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [File!]!
+  allGraphs(filter: GraphFilter, orderBy: GraphOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Graph!]!
+  allKpis(filter: KpiFilter, orderBy: KpiOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Kpi!]!
+  allKpiDatas(filter: KpiDataFilter, orderBy: KpiDataOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [KpiData!]!
+  allNotifications(filter: NotificationFilter, orderBy: NotificationOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Notification!]!
+  allReports(filter: ReportFilter, orderBy: ReportOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Report!]!
+  allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [User!]!
+  _allCompaniesMeta(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allEmployersMeta(filter: EmployerFilter, orderBy: EmployerOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allFilesMeta(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allGraphsMeta(filter: GraphFilter, orderBy: GraphOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allKpisMeta(filter: KpiFilter, orderBy: KpiOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allKpiDatasMeta(filter: KpiDataFilter, orderBy: KpiDataOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allNotificationsMeta(filter: NotificationFilter, orderBy: NotificationOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allReportsMeta(filter: ReportFilter, orderBy: ReportOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allUsersMeta(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  Company(id: ID, name: String): Company
+  Employer(id: ID, name: String): Employer
+  File(id: ID, secret: String, url: String): File
+  Graph(id: ID): Graph
+  Kpi(id: ID): Kpi
+  KpiData(id: ID): KpiData
+  Notification(id: ID): Notification
+  Report(id: ID): Report
+  User(email: String, id: ID): User
+
+  # getKpiPdfInfo
+  getKpiPdfInfo(kpiId: String!): pdfMetadataPayload
+  user: User
+
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+}
+
+type RemoveFromCompanyKpisPayload {
+  xNotUsed1Company: Company
+  kpisKpi: Kpi
+}
+
+type RemoveFromEmployerCreatedByUserPayload {
+  xNotUsed2Employer: Employer
+  createdByUser: User
+}
+
+type RemoveFromGraphsKpisPayload {
+  xNotUsed2Graph: Graph
+  kpisKpi: Kpi
+}
+
+type RemoveFromNotificationsChangedCompaniesPayload {
+  changedCompaniesCompany: Company
+  xNotUsed4Notification: Notification
+}
+
+type RemoveFromReportsCompaniesPayload {
+  companiesCompany: Company
+  xNotUsed3Report: Report
+}
+
+type RemoveFromUsersEmployerPayload {
+  employerEmployer: Employer
+  usersUser: User
+}
+
+type RemoveFromUsersNotificationCompaniesPayload {
+  notificationCompaniesCompany: Company
+  xNotUsed2User: User
+}
+
+type Report implements Node {
+  companies(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Company!]
+  createdAt: DateTime!
+  graphs(filter: GraphFilter, orderBy: GraphOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Graph!]
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+  user(filter: UserFilter): User!
+  xNotUsed1(filter: UserFilter): User
+
+  # Meta information about the query.
+  _companiesMeta(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _graphsMeta(filter: GraphFilter, orderBy: GraphOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+input ReportcompaniesCompany {
+  name: String!
+  xNotUsed1Id: ID
+  xNotUsed1: CompanyxNotUsed1Employer
+  kpisIds: [ID!]
+  kpis: [CompanykpisKpi!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [CompanyxNotUsed2User!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [CompanyxNotUsed3Report!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [CompanyxNotUsed4Notification!]
+}
+
+input ReportFilter {
+  # Logical AND on all given filters.
+  AND: [ReportFilter!]
+
+  # Logical OR on all given filters.
+  OR: [ReportFilter!]
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  companies_every: CompanyFilter
+  companies_some: CompanyFilter
+  companies_none: CompanyFilter
+  graphs_every: GraphFilter
+  graphs_some: GraphFilter
+  graphs_none: GraphFilter
+  user: UserFilter
+  xNotUsed1: UserFilter
+}
+
+input ReportgraphsGraph {
+  position: Int!
+  relative: Boolean!
+  kpisIds: [ID!]
+  kpis: [GraphkpisKpi!]
+}
+
+enum ReportOrderBy {
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ReportPreviousValues {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input ReportSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [ReportSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [ReportSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: ReportSubscriptionFilterNode
+}
+
+input ReportSubscriptionFilterNode {
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  companies_every: CompanyFilter
+  companies_some: CompanyFilter
+  companies_none: CompanyFilter
+  graphs_every: GraphFilter
+  graphs_some: GraphFilter
+  graphs_none: GraphFilter
+  user: UserFilter
+  xNotUsed1: UserFilter
+}
+
+type ReportSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Report
+  updatedFields: [String!]
+  previousValues: ReportPreviousValues
+}
+
+input ReportuserUser {
+  email: String!
+  fullname: String
+  isAdmin: Boolean
+  isEnabled: Boolean
+  password: String
+  createdById: ID
+  createdBy: UserxNotUsed1User
+  employerId: ID
+  employer: UseremployerEmployer
+  lastReportId: ID
+  lastReport: UserlastReportReport
+  xNotUsed1Id: ID
+  xNotUsed1: UserxNotUsed1User
+  notificationCompaniesIds: [ID!]
+  notificationCompanies: [UsernotificationCompaniesCompany!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [UserxNotUsed2Employer!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [UserxNotUsed3Notification!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [UserxNotUsed4Report!]
+}
+
+input ReportxNotUsed1User {
+  email: String!
+  fullname: String
+  isAdmin: Boolean
+  isEnabled: Boolean
+  password: String
+  createdById: ID
+  createdBy: UserxNotUsed1User
+  employerId: ID
+  employer: UseremployerEmployer
+  xNotUsed1Id: ID
+  xNotUsed1: UserxNotUsed1User
+  notificationCompaniesIds: [ID!]
+  notificationCompanies: [UsernotificationCompaniesCompany!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [UserxNotUsed2Employer!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [UserxNotUsed3Notification!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [UserxNotUsed4Report!]
+}
+
+type SetEmployerCompanyPayload {
+  companyCompany: Company
+  xNotUsed1Employer: Employer
+}
+
+type SetUserCreatedByUserPayload {
+  xNotUsed1User: User
+  createdByUser: User
+}
+
+type SetUserLastReportPayload {
+  lastReportReport: Report
+  xNotUsed1User: User
+}
+
+# SignInPayload
+type SignInPayload {
+  token: String
+  refreshToken: String
+  userId: String
+  fullname: String
+  error: Int
+}
+
+type Subscription {
+  Company(filter: CompanySubscriptionFilter): CompanySubscriptionPayload
+  Employer(filter: EmployerSubscriptionFilter): EmployerSubscriptionPayload
+  File(filter: FileSubscriptionFilter): FileSubscriptionPayload
+  Graph(filter: GraphSubscriptionFilter): GraphSubscriptionPayload
+  Kpi(filter: KpiSubscriptionFilter): KpiSubscriptionPayload
+  KpiData(filter: KpiDataSubscriptionFilter): KpiDataSubscriptionPayload
+  Notification(filter: NotificationSubscriptionFilter): NotificationSubscriptionPayload
+  Report(filter: ReportSubscriptionFilter): ReportSubscriptionPayload
+  User(filter: UserSubscriptionFilter): UserSubscriptionPayload
+}
+
+type UnsetEmployerCompanyPayload {
+  companyCompany: Company
+  xNotUsed1Employer: Employer
+}
+
+type UnsetUserCreatedByUserPayload {
+  xNotUsed1User: User
+  createdByUser: User
+}
+
+type UnsetUserLastReportPayload {
+  lastReportReport: Report
+  xNotUsed1User: User
+}
+
+input UpdateCompany {
+  id: ID!
+  name: String
+  xNotUsed1Id: ID
+  xNotUsed1: CompanyxNotUsed1Employer
+  kpisIds: [ID!]
+  kpis: [CompanykpisKpi!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [CompanyxNotUsed2User!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [CompanyxNotUsed3Report!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [CompanyxNotUsed4Notification!]
+}
+
+input UpdateEmployer {
+  id: ID!
+  name: String
+  companyId: ID
+  company: EmployercompanyCompany
+  createdById: ID
+  createdBy: EmployercreatedByUser
+  usersIds: [ID!]
+  users: [EmployerusersUser!]
+}
+
+input UpdateFile {
+  id: ID!
+  name: String
+}
+
+input UpdateGraph {
+  id: ID!
+  position: Int
+  relative: Boolean
+  reportId: ID
+  report: GraphreportReport
+  kpisIds: [ID!]
+  kpis: [GraphkpisKpi!]
+}
+
+input UpdateKpi {
+  id: ID!
+  name: String
+  unit: String
+  xNotUsed1Ids: [ID!]
+  xNotUsed1: [KpixNotUsed1Company!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [KpixNotUsed2Graph!]
+}
+
+input UpdateKpiData {
+  companyId: String
+  id: ID!
+  kpiId: String
+  quarter: String
+  value: Float
+  year: Int
+}
+
+input UpdateNotification {
+  emailSent: Boolean
+  id: ID!
+  userId: ID
+  user: NotificationuserUser
+  changedCompaniesIds: [ID!]
+  changedCompanies: [NotificationchangedCompaniesCompany!]
+}
+
+input UpdateReport {
+  id: ID!
+  name: String
+  userId: ID
+  user: ReportuserUser
+  xNotUsed1Id: ID
+  xNotUsed1: ReportxNotUsed1User
+  companiesIds: [ID!]
+  companies: [ReportcompaniesCompany!]
+  graphsIds: [ID!]
+  graphs: [ReportgraphsGraph!]
+}
+
+input UpdateUser {
+  email: String
+  fullname: String
+  id: ID!
+  isAdmin: Boolean
+  isEnabled: Boolean
+  password: String
+  createdById: ID
+  createdBy: UserxNotUsed1User
+  employerId: ID
+  employer: UseremployerEmployer
+  lastReportId: ID
+  lastReport: UserlastReportReport
+  xNotUsed1Id: ID
+  xNotUsed1: UserxNotUsed1User
+  notificationCompaniesIds: [ID!]
+  notificationCompanies: [UsernotificationCompaniesCompany!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [UserxNotUsed2Employer!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [UserxNotUsed3Notification!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [UserxNotUsed4Report!]
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  createdBy(filter: UserFilter): User
+  email: String!
+  employer(filter: EmployerFilter): Employer
+  fullname: String
+  id: ID!
+  isAdmin: Boolean!
+  isEnabled: Boolean!
+  lastReport(filter: ReportFilter): Report
+  notificationCompanies(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Company!]
+  password: String
+  updatedAt: DateTime!
+  xNotUsed1(filter: UserFilter): User
+  xNotUsed2(filter: EmployerFilter, orderBy: EmployerOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Employer!]
+  xNotUsed3(filter: NotificationFilter, orderBy: NotificationOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Notification!]
+  xNotUsed4(filter: ReportFilter, orderBy: ReportOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Report!]
+
+  # Meta information about the query.
+  _notificationCompaniesMeta(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _xNotUsed2Meta(filter: EmployerFilter, orderBy: EmployerOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _xNotUsed3Meta(filter: NotificationFilter, orderBy: NotificationOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _xNotUsed4Meta(filter: ReportFilter, orderBy: ReportOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+input UseremployerEmployer {
+  name: String!
+  companyId: ID
+  company: EmployercompanyCompany
+  createdById: ID
+  createdBy: EmployercreatedByUser
+  usersIds: [ID!]
+  users: [EmployerusersUser!]
+}
+
+input UserFilter {
+  # Logical AND on all given filters.
+  AND: [UserFilter!]
+
+  # Logical OR on all given filters.
+  OR: [UserFilter!]
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  email: String
+
+  # All values that are not equal to given value.
+  email_not: String
+
+  # All values that are contained in given list.
+  email_in: [String!]
+
+  # All values that are not contained in given list.
+  email_not_in: [String!]
+
+  # All values less than the given value.
+  email_lt: String
+
+  # All values less than or equal the given value.
+  email_lte: String
+
+  # All values greater than the given value.
+  email_gt: String
+
+  # All values greater than or equal the given value.
+  email_gte: String
+
+  # All values containing the given string.
+  email_contains: String
+
+  # All values not containing the given string.
+  email_not_contains: String
+
+  # All values starting with the given string.
+  email_starts_with: String
+
+  # All values not starting with the given string.
+  email_not_starts_with: String
+
+  # All values ending with the given string.
+  email_ends_with: String
+
+  # All values not ending with the given string.
+  email_not_ends_with: String
+  fullname: String
+
+  # All values that are not equal to given value.
+  fullname_not: String
+
+  # All values that are contained in given list.
+  fullname_in: [String!]
+
+  # All values that are not contained in given list.
+  fullname_not_in: [String!]
+
+  # All values less than the given value.
+  fullname_lt: String
+
+  # All values less than or equal the given value.
+  fullname_lte: String
+
+  # All values greater than the given value.
+  fullname_gt: String
+
+  # All values greater than or equal the given value.
+  fullname_gte: String
+
+  # All values containing the given string.
+  fullname_contains: String
+
+  # All values not containing the given string.
+  fullname_not_contains: String
+
+  # All values starting with the given string.
+  fullname_starts_with: String
+
+  # All values not starting with the given string.
+  fullname_not_starts_with: String
+
+  # All values ending with the given string.
+  fullname_ends_with: String
+
+  # All values not ending with the given string.
+  fullname_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  isAdmin: Boolean
+
+  # All values that are not equal to given value.
+  isAdmin_not: Boolean
+  isEnabled: Boolean
+
+  # All values that are not equal to given value.
+  isEnabled_not: Boolean
+  password: String
+
+  # All values that are not equal to given value.
+  password_not: String
+
+  # All values that are contained in given list.
+  password_in: [String!]
+
+  # All values that are not contained in given list.
+  password_not_in: [String!]
+
+  # All values less than the given value.
+  password_lt: String
+
+  # All values less than or equal the given value.
+  password_lte: String
+
+  # All values greater than the given value.
+  password_gt: String
+
+  # All values greater than or equal the given value.
+  password_gte: String
+
+  # All values containing the given string.
+  password_contains: String
+
+  # All values not containing the given string.
+  password_not_contains: String
+
+  # All values starting with the given string.
+  password_starts_with: String
+
+  # All values not starting with the given string.
+  password_not_starts_with: String
+
+  # All values ending with the given string.
+  password_ends_with: String
+
+  # All values not ending with the given string.
+  password_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  createdBy: UserFilter
+  employer: EmployerFilter
+  lastReport: ReportFilter
+  notificationCompanies_every: CompanyFilter
+  notificationCompanies_some: CompanyFilter
+  notificationCompanies_none: CompanyFilter
+  xNotUsed1: UserFilter
+  xNotUsed2_every: EmployerFilter
+  xNotUsed2_some: EmployerFilter
+  xNotUsed2_none: EmployerFilter
+  xNotUsed3_every: NotificationFilter
+  xNotUsed3_some: NotificationFilter
+  xNotUsed3_none: NotificationFilter
+  xNotUsed4_every: ReportFilter
+  xNotUsed4_some: ReportFilter
+  xNotUsed4_none: ReportFilter
+}
+
+input UserlastReportReport {
+  name: String!
+  userId: ID
+  user: ReportuserUser
+  companiesIds: [ID!]
+  companies: [ReportcompaniesCompany!]
+  graphsIds: [ID!]
+  graphs: [ReportgraphsGraph!]
+}
+
+input UsernotificationCompaniesCompany {
+  name: String!
+  xNotUsed1Id: ID
+  xNotUsed1: CompanyxNotUsed1Employer
+  kpisIds: [ID!]
+  kpis: [CompanykpisKpi!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [CompanyxNotUsed2User!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [CompanyxNotUsed3Report!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [CompanyxNotUsed4Notification!]
+}
+
+enum UserOrderBy {
+  createdAt_ASC
+  createdAt_DESC
+  email_ASC
+  email_DESC
+  fullname_ASC
+  fullname_DESC
+  id_ASC
+  id_DESC
+  isAdmin_ASC
+  isAdmin_DESC
+  isEnabled_ASC
+  isEnabled_DESC
+  password_ASC
+  password_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  createdAt: DateTime!
+  email: String!
+  fullname: String
+  id: ID!
+  isAdmin: Boolean!
+  isEnabled: Boolean!
+  password: String
+  updatedAt: DateTime!
+}
+
+input UserSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [UserSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [UserSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: UserSubscriptionFilterNode
+}
+
+input UserSubscriptionFilterNode {
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  email: String
+
+  # All values that are not equal to given value.
+  email_not: String
+
+  # All values that are contained in given list.
+  email_in: [String!]
+
+  # All values that are not contained in given list.
+  email_not_in: [String!]
+
+  # All values less than the given value.
+  email_lt: String
+
+  # All values less than or equal the given value.
+  email_lte: String
+
+  # All values greater than the given value.
+  email_gt: String
+
+  # All values greater than or equal the given value.
+  email_gte: String
+
+  # All values containing the given string.
+  email_contains: String
+
+  # All values not containing the given string.
+  email_not_contains: String
+
+  # All values starting with the given string.
+  email_starts_with: String
+
+  # All values not starting with the given string.
+  email_not_starts_with: String
+
+  # All values ending with the given string.
+  email_ends_with: String
+
+  # All values not ending with the given string.
+  email_not_ends_with: String
+  fullname: String
+
+  # All values that are not equal to given value.
+  fullname_not: String
+
+  # All values that are contained in given list.
+  fullname_in: [String!]
+
+  # All values that are not contained in given list.
+  fullname_not_in: [String!]
+
+  # All values less than the given value.
+  fullname_lt: String
+
+  # All values less than or equal the given value.
+  fullname_lte: String
+
+  # All values greater than the given value.
+  fullname_gt: String
+
+  # All values greater than or equal the given value.
+  fullname_gte: String
+
+  # All values containing the given string.
+  fullname_contains: String
+
+  # All values not containing the given string.
+  fullname_not_contains: String
+
+  # All values starting with the given string.
+  fullname_starts_with: String
+
+  # All values not starting with the given string.
+  fullname_not_starts_with: String
+
+  # All values ending with the given string.
+  fullname_ends_with: String
+
+  # All values not ending with the given string.
+  fullname_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  isAdmin: Boolean
+
+  # All values that are not equal to given value.
+  isAdmin_not: Boolean
+  isEnabled: Boolean
+
+  # All values that are not equal to given value.
+  isEnabled_not: Boolean
+  password: String
+
+  # All values that are not equal to given value.
+  password_not: String
+
+  # All values that are contained in given list.
+  password_in: [String!]
+
+  # All values that are not contained in given list.
+  password_not_in: [String!]
+
+  # All values less than the given value.
+  password_lt: String
+
+  # All values less than or equal the given value.
+  password_lte: String
+
+  # All values greater than the given value.
+  password_gt: String
+
+  # All values greater than or equal the given value.
+  password_gte: String
+
+  # All values containing the given string.
+  password_contains: String
+
+  # All values not containing the given string.
+  password_not_contains: String
+
+  # All values starting with the given string.
+  password_starts_with: String
+
+  # All values not starting with the given string.
+  password_not_starts_with: String
+
+  # All values ending with the given string.
+  password_ends_with: String
+
+  # All values not ending with the given string.
+  password_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  createdBy: UserFilter
+  employer: EmployerFilter
+  lastReport: ReportFilter
+  notificationCompanies_every: CompanyFilter
+  notificationCompanies_some: CompanyFilter
+  notificationCompanies_none: CompanyFilter
+  xNotUsed1: UserFilter
+  xNotUsed2_every: EmployerFilter
+  xNotUsed2_some: EmployerFilter
+  xNotUsed2_none: EmployerFilter
+  xNotUsed3_every: NotificationFilter
+  xNotUsed3_some: NotificationFilter
+  xNotUsed3_none: NotificationFilter
+  xNotUsed4_every: ReportFilter
+  xNotUsed4_some: ReportFilter
+  xNotUsed4_none: ReportFilter
+}
+
+type UserSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserxNotUsed1User {
+  email: String!
+  fullname: String
+  isAdmin: Boolean
+  isEnabled: Boolean
+  password: String
+  employerId: ID
+  employer: UseremployerEmployer
+  lastReportId: ID
+  lastReport: UserlastReportReport
+  notificationCompaniesIds: [ID!]
+  notificationCompanies: [UsernotificationCompaniesCompany!]
+  xNotUsed2Ids: [ID!]
+  xNotUsed2: [UserxNotUsed2Employer!]
+  xNotUsed3Ids: [ID!]
+  xNotUsed3: [UserxNotUsed3Notification!]
+  xNotUsed4Ids: [ID!]
+  xNotUsed4: [UserxNotUsed4Report!]
+}
+
+input UserxNotUsed2Employer {
+  name: String!
+  companyId: ID
+  company: EmployercompanyCompany
+  usersIds: [ID!]
+  users: [EmployerusersUser!]
+}
+
+input UserxNotUsed3Notification {
+  emailSent: Boolean!
+  changedCompaniesIds: [ID!]
+  changedCompanies: [NotificationchangedCompaniesCompany!]
+}
+
+input UserxNotUsed4Report {
+  name: String!
+  xNotUsed1Id: ID
+  xNotUsed1: ReportxNotUsed1User
+  companiesIds: [ID!]
+  companies: [ReportcompaniesCompany!]
+  graphsIds: [ID!]
+  graphs: [ReportgraphsGraph!]
+}

@@ -1,0 +1,7 @@
+#import '../fragments/reportInfo.gql'
+
+query getReportsByUserId($userId: ID!) {
+  allReports(filter: { user: { id: $userId } }) {
+    ...reportInfo
+  }
+}

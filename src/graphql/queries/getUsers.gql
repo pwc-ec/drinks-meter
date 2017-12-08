@@ -1,0 +1,7 @@
+#import '../fragments/userInfo.gql'
+
+query getUsers($filter: UserFilter) {
+  allUsers(orderBy: fullname_ASC, filter: $filter) {
+    ...userInfo
+  }
+}

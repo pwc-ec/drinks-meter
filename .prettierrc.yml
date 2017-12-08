@@ -1,0 +1,44 @@
+# Options: https://github.com/prettier/prettier#options
+# Format:  https://github.com/davidtheclark/cosmiconfig#cosmiconfig
+
+
+# Common options
+
+printWidth: 120
+
+
+# JavaScript options
+
+semi: false
+singleQuote: true
+  # Except JSX, double quotes are always used there.
+
+trailingComma: all
+  # Currently, trailing comma is disabled for TypeScript interfaces.
+  # - https://github.com/prettier/prettier/issues/1858
+  # - https://github.com/Microsoft/TypeScript/issues/16152
+
+
+# Custom file type options
+
+overrides:
+- files: '*.@(js|jsx)'
+  options:
+    # parser: babylon # or flow
+      # Prettier automatically infers the parser from the input file path and extension.
+
+- files: '*.@(ts|tsx)'
+  options:
+    # parser: typescript
+
+- files: '*.@(c|le|sa|sc)ss'
+  options:
+    # parser: postcss
+
+- files: '*.@(gql|graphql)'
+  options:
+    # parser: graphql
+
+- files: '*.@(md|markdown)'
+  options:
+    # parser: markdown

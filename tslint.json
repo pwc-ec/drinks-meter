@@ -1,0 +1,39 @@
+// Options: https://palantir.github.io/tslint/usage/tslint-json/
+
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-eslint-rules",
+    "tslint-plugin-graphql",
+    "tslint-plugin-prettier", // Check formatting with prettier.
+    "tslint-config-prettier"  // Disable any formatting rules conflicting with Prettier.
+  ],
+  "jsRules": {
+    // Avoid any formatting rules here, Prettier takes care of formatting.
+    // If unsure, run `yarn tslint-config-prettier-check ./tslint.json`.
+    "prettier": true,
+    "no-console": [false]
+  },
+  "rules": {
+    // Avoid any formatting rules here, Prettier takes care of formatting.
+    // If unsure, run `yarn tslint-config-prettier-check ./tslint.json`.
+    "prettier": true,
+    "no-console": [false],
+    "jsx-no-lambda": false,
+    "graphql": [
+      "error",
+      {
+        // Import default settings for your GraphQL client.
+        // Supported values: "apollo", "relay", "lokka".
+        "env": "apollo",
+        "schemaJsonFilepath": "./schema.graphql",
+        // Tag name defaults to "gql".
+        "tagName": "gql"
+      }
+    ]
+  },
+  "rulesDirectory": [
+  ]
+}

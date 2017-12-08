@@ -1,0 +1,5 @@
+mutation createEmployer($name: String!, $company: ID) {
+  createEmployer(name: $name, companyId: $company) {
+    id
+  }
+}
