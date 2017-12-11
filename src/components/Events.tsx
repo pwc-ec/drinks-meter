@@ -29,7 +29,7 @@ const Events: React.SFC<IEventsProps> = ({ events, classes, loading }) => (
       <div>
         {events.map(ev => (
           <Button color="primary" key={ev.id}>
-            <Link to={`/${ev.url}`}>{ev.name}</Link>
+            <Link to={`/${ev.name}`}>{ev.name}</Link>
           </Button>
         ))}
       </div>

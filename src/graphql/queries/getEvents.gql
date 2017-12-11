@@ -1,7 +1,7 @@
 #import '../fragments/eventInfo.gql'
 
-query getEvents {
-  allEvents(orderBy: finishAt_DESC) {
+query getEvents($filter: EventFilter) {
+  allEvents(filter: $filter, orderBy: finishAt_DESC) {
     ...eventInfo
   }
 }

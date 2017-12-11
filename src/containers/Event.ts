@@ -36,8 +36,15 @@ const enhancers = [
   connect(mapStateToProps, mapDispatchToProps),
 
   graphql<IallEventsResponse, IContainerProps>(getEventsQuery, {
+    options: ({ match: { params: { eventUrl } } }) => {
+      return {
+        variables: {
+          filter: { name: eventUrl },
+        },
+      }
+    },
     props: ({ data: { allEvents: response, loading }, ownProps }) => ({
-      currentEvent: response ? _.find(response, { url: ownProps.match.params.eventUrl }) : null,
+      currentEvent: response ? response[0] : null,
       loading,
     }),
   }),
