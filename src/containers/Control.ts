@@ -1,17 +1,19 @@
+import * as _ from 'lodash'
 import { graphql } from 'react-apollo'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { branch, compose, renderComponent, withHandlers, withState } from 'recompose'
 
 import { showErrorSnackbar, showInfoSnackbar, showSuccessSnackbar } from '../actions/snackbars'
-import BeveragesConsumption, { IBeveragesConsumptionProps } from '../components/BeveragesConsumption'
+import Control, { IControlProps } from '../components/Control'
 
-import * as getEventBeveragesConsupmtionQuery from '../graphql/queries/getEventBeveragesConsupmtion.gql'
+import * as getEventsQuery from '../graphql/queries/getEvents.gql'
 
 // ------------------------------------------------------------------------------------------------
 
-interface IContainerProps extends IBeveragesConsumptionProps {
+interface IContainerProps extends IControlProps {
   history: any
+  match: any
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -33,17 +35,12 @@ const enhancers = [
 
   connect(mapStateToProps, mapDispatchToProps),
 
-  graphql<IEventResponse, IContainerProps>(getEventBeveragesConsupmtionQuery, {
-    options: props => ({
-      variables: {
-        id: 'cjawweanf4noh0144wwo870q0',
-      },
-    }),
-    props: ({ data: { Event: response, loading }, ownProps }) => ({
+  graphql<IallEventsResponse, IContainerProps>(getEventsQuery, {
+    props: ({ data: { allEvents: response, loading }, ownProps }) => ({
+      currentEvent: response ? _.find(response, { url: ownProps.match.params.eventUrl }) : null,
       loading,
-      menuBeverages: (response && response.menuBeverages) || [],
     }),
   }),
 ]
 
-export default compose(...enhancers)(BeveragesConsumption)
+export default compose(...enhancers)(Control)

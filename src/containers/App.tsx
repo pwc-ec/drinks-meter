@@ -9,8 +9,8 @@ import theme from '../services/theme'
 import Snackbar from '../containers/Snackbar'
 
 import BeveragesConsumption from '../containers/BeveragesConsumption'
-// import Control from '../containers/Control'
-// import Dashboard from '../containers/Dashboard'
+import Control from '../containers/Control'
+import Dashboard from '../containers/Dashboard'
 import Event from '../containers/Event'
 import Events from '../containers/Events'
 import Home from '../containers/Home'
@@ -35,9 +35,9 @@ const App = props => (
     <main>
       <Switch>
         <Route path="/" component={Events} exact={true} />
-        <Route path="/:eventUrl" component={Event} />
-        {/*<Route path="/:eventSlug/dashboard" component={Dashboard} />
-<Route path="/:eventSlug/control" component={Control} />*/}
+        <Route path="/:eventUrl" component={Event} exact={true} />
+        <Route path="/:eventUrl/dashboard" component={Dashboard} />
+        <Route path="/:eventUrl/control" component={Control} />
       </Switch>
     </main>
     <Snackbar />
