@@ -1,0 +1,7 @@
+#import '../fragments/eventInfo.gql'
+
+query getEventMenu($id: ID!) {
+  allMenuBeverages(filter: {event: {id: $id}}) {
+    ...beverageInfo
+  }
+}
