@@ -1,0 +1,15 @@
+#import '../fragments/beverageInfo.gql'
+
+fragment eventExtInfo on Event {
+  attendance
+  finishAt
+  id
+  name
+  startAt
+  url
+  menuBeverages {
+    beverage {
+      ...beverageInfo
+    }
+  }
+}
