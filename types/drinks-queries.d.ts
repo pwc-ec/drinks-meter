@@ -5,3 +5,7 @@ declare interface IallEventsResponse {
 declare interface IEventResponse {
   Event: IEvent
 }
+
+declare interface IAllMenuBeveragesResponse {
+  allMenuBeverages: IMenuBeverage[]
+}

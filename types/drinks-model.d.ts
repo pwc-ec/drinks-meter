@@ -10,7 +10,7 @@ declare interface IEvent {
 
 declare interface IMenuBeverage {
   beverage: IBeverage
-  consupmtions: IConsumption[]
+  consumptions: IConsumption[]
   event: IEvent
   id: string
 }
