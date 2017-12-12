@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography'
 
 import AppHeader from '../components/AppHeader'
 
+import DrinksThroughTime from '../containers/DrinksThroughTime'
 import DrinksTotals from '../containers/DrinksTotals'
 
 export interface IDashboardProps {
@@ -31,6 +32,7 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading 
         <Typography type="subheading">Dashboard</Typography>
         <Typography type="subheading">{currentEvent.name}</Typography>
         <DrinksTotals eventId={currentEvent && currentEvent.id} />
+        <DrinksThroughTime eventId={currentEvent && currentEvent.id} />
       </div>
     )}
   </div>

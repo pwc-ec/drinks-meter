@@ -2,21 +2,7 @@ import * as React from 'react'
 
 import { withStyles } from 'material-ui/styles'
 import { Bar, BarChart, CartesianGrid, Cell, ComposedChart, Line, ResponsiveContainer, XAxis, YAxis } from 'recharts'
-
-const colors = [
-  '#e9bb0f',
-  '#f16b40',
-  '#d61e26',
-  '#b71358',
-  '#561a2e',
-  '#671dd2',
-  '#debaff',
-  '#1c6dab',
-  '#659f97',
-  '#bed262',
-  '#8dc50b',
-  '#0b473a',
-]
+import colors from '../constants/colors'
 
 export interface IDrinksTotalsProps {
   classes?: any
