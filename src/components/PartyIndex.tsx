@@ -8,7 +8,16 @@ import { getPartyIndexImage } from '../services/partyIndexImage'
 
 const styles = theme => ({
   index: {
+    background: theme.bmai.palette.accent,
+    borderRadius: '50%',
+    fontSize: '6rem',
+    height: '1.5em',
+    left: '-1rem',
+    lineHeight: '1.5em',
     position: 'absolute' as 'absolute',
+    textAlign: 'center',
+    top: '-1rem',
+    width: '1.5em',
   },
   root: {
     backgroundPosition: 'center center',
@@ -16,10 +25,10 @@ const styles = theme => ({
     border: `1px solid ${fade('#fff', 0.25)}`,
     borderRadius: '50%',
     color: theme.bmai.palette.accent,
-    height: '30vh',
+    height: '40vh',
     padding: 0,
     position: 'relative' as 'relative',
-    width: '30vh',
+    width: '40vh',
   },
   spacer: {
     paddingBottom: '100%',
@@ -39,7 +48,9 @@ const PartyIndex = props => {
   const { classes, event, index } = props
   return (
     <div className={classes.root} style={{ backgroundImage: `url(${getPartyIndexImage(event.url, index)})` }}>
-      <div className={classes.index}>{index}</div>
+      <Typography className={classes.index} type="title">
+        {index}
+      </Typography>
       <div className={classes.spacer} />
     </div>
   )
