@@ -13,7 +13,6 @@ export interface IDrinksTotalsProps {
 const styles = theme => ({
   root: {
     height: '350px',
-    padding: '1rem',
     width: '400px',
   },
 })
