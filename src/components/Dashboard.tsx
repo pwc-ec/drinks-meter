@@ -9,6 +9,7 @@ import { withStyles } from 'material-ui/styles'
 
 import Loader from '../components/Loader'
 import PartyIndex from '../components/PartyIndex'
+import RoundCounter from '../components/RoundCounter'
 import DrinksThroughTime from '../containers/DrinksThroughTime'
 import DrinksTotals from '../containers/DrinksTotals'
 
@@ -54,6 +55,10 @@ const styles = theme => ({
     fontWeight: 200 as 200,
   },
 })
+
+const calculateTotalDrinks = menuBeverages => {
+  return menuBeverages.map(mb => mb.consumptions.length).reduce((a, b) => a + b, 0)
+}
 
 const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading }) => (
   <div className={classes.root}>
@@ -105,15 +110,33 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading 
         <Grid className={classes.fullHeight} item={true} xs={true}>
           <Grid className={classes.fullHeight} container={true} xs={true} spacing={0} direction="column">
             <Grid className={cn(classes.borderBottom, classes.cell)} item={true} xs={true}>
-              <Grid container={true} direction="row" alignItems="center">
-                <Link to={`/${currentEvent.url}`} className={classes.button}>
-                  <IconButton className={classes.button} aria-label="Back">
-                    <MenuIcon />
-                  </IconButton>
-                </Link>
-                <Typography type="title" className={classes.title}>
-                  {currentEvent.name}
-                </Typography>
+              <Grid className={classes.fullHeight} container={true} direction="column" spacing={0} xs={true}>
+                <Grid container={true} direction="row" alignItems="center">
+                  <Link to={`/${currentEvent.url}`} className={classes.button}>
+                    <IconButton className={classes.button} aria-label="Back">
+                      <MenuIcon />
+                    </IconButton>
+                  </Link>
+                  <Typography type="title" className={classes.title}>
+                    {currentEvent.name}
+                  </Typography>
+                </Grid>
+                <Grid container={true} direction="row" justify="center" alignItems="center" xs={true}>
+                  <Grid item={true} xs={3}>
+                    <RoundCounter
+                      bigNumber={calculateTotalDrinks(currentEvent.menuBeverages)}
+                      title="Total Drinks"
+                      subtitle="Used on Event"
+                    />
+                  </Grid>
+                  <Grid item={true} xs={3}>
+                    <RoundCounter
+                      bigNumber={currentEvent.attendance}
+                      title="People Counter"
+                      subtitle="People on Event"
+                    />
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
             <Grid className={classes.cell} item={true} xs={true}>
