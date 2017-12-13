@@ -56,6 +56,22 @@ const styles = theme => ({
   },
 })
 
+const calculatePartyIndex = (event: IEvent) => {
+  const attendance = event.attendance
+  const menuBeverages = event.menuBeverages
+  const averageWeight = 75
+
+  const array = event.menuBeverages.map((mb: IMenuBeverage) => {
+    const alcohol: number = mb.beverage.alcohol
+    const volume: number = mb.beverage.volume
+    const consumptions: number = mb.consumptions.length
+    return consumptions * alcohol * volume * 0.08
+  })
+
+  const calculation = array.reduce((a, b) => a + b, 0) / (averageWeight * 0.7)
+  return Math.ceil(calculation / attendance * 1000)
+}
+
 const calculateTotalDrinks = menuBeverages => {
   return menuBeverages.map(mb => mb.consumptions.length).reduce((a, b) => a + b, 0)
 }
@@ -146,7 +162,7 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading 
                 </Typography>
                 <Grid container={true} alignItems="flex-end" justify="flex-end" xs={true}>
                   <Grid item={true}>
-                    <PartyIndex event={currentEvent} index={1} />
+                    <PartyIndex event={currentEvent} index={calculatePartyIndex(currentEvent)} />
                   </Grid>
                 </Grid>
               </Grid>
