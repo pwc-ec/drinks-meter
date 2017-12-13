@@ -38,6 +38,8 @@ const enhancers = [
   graphql<IallEventsResponse, IContainerProps>(getEventsQuery, {
     options: ({ match: { params: { eventUrl } } }) => {
       return {
+        fetchPolicy: 'network-only',
+        pollInterval: 10000,
         variables: {
           filter: { url: eventUrl },
         },

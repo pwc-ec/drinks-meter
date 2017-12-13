@@ -20,6 +20,14 @@ const styles = theme => ({
     display: 'flex',
     flexGrow: 1,
   },
+  drinksThroughTime: {
+    // height: '350px', // setting height via calc and percentage does not work
+    width: 'calc(100% - 2rem)',
+  },
+  drinksTotals: {
+    // height: '350px',
+    width: 'calc(100% - 2rem)',
+  },
   root: {
     background: theme.bmai.palette.background,
     color: theme.bmai.palette.white,
@@ -44,8 +52,16 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading 
         spacing={40}
       >
         <Grid className={classes.center} item={true} xs={6}>
-          <DrinksTotals eventId={currentEvent && currentEvent.id} />
-          <DrinksThroughTime eventId={currentEvent && currentEvent.id} />
+          <DrinksTotals
+            classes={{ root: classes.drinksTotals }}
+            loading={loading}
+            menuBeverages={currentEvent && currentEvent.menuBeverages}
+          />
+          <DrinksThroughTime
+            classes={{ root: classes.drinksThroughTime }}
+            loading={loading}
+            menuBeverages={currentEvent && currentEvent.menuBeverages}
+          />
         </Grid>
         <Grid className={classes.center} item={true} xs={6}>
           <Link to={`/${currentEvent.url}`}>
