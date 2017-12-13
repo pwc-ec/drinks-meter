@@ -43,12 +43,12 @@ const Event: React.SFC<IEventProps> = ({ currentEvent, classes, loading }) => (
         justify="center"
         spacing={40}
       >
-        <Grid className={classes.center} item={true} xs={2}>
+        <Grid className={classes.center} item={true} xs={4} sm={2}>
           <Link to={`/${currentEvent.url}/dashboard`}>
             <RoundButton title="Dashboard" />
           </Link>
         </Grid>
-        <Grid className={classes.center} item={true} xs={2}>
+        <Grid className={classes.center} item={true} xs={4} sm={2}>
           <Link to={`/${currentEvent.url}/control`}>
             <RoundButton title="Control" />
           </Link>

@@ -16,10 +16,6 @@ export interface IControlProps {
 }
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexGrow: 1,
-  },
   root: {
     background: theme.bmai.palette.background,
     color: theme.bmai.palette.white,
@@ -27,6 +23,10 @@ const styles = theme => ({
     flexDirection: 'column' as 'column',
     height: '100%',
     overflow: 'hidden' as 'hidden',
+  },
+  wrapper: {
+    paddingLeft: '2rem',
+    paddingRight: '2rem',
   },
 })
 
@@ -37,12 +37,13 @@ const Control: React.SFC<IControlProps> = ({ currentEvent, classes, loading, onA
       <Loader />
     ) : (
       <Grid
-        className={classes.container}
+        className={classes.wrapper}
         alignItems="center"
         direction="row"
         container={true}
         justify="center"
         spacing={40}
+        xs={true}
       >
         {currentEvent.menuBeverages.map(mb => (
           <Grid className={classes.center} key={mb.id} item={true} xs={2}>
