@@ -8,9 +8,9 @@ import MenuIcon from 'material-ui-icons/Menu'
 import { withStyles } from 'material-ui/styles'
 
 import Loader from '../components/Loader'
-import PartyIndex from '../components/PartyIndex'
 import DrinksThroughTime from '../containers/DrinksThroughTime'
 import DrinksTotals from '../containers/DrinksTotals'
+import PartyIndex from '../containers/PartyIndex'
 
 export interface IDashboardProps {
   currentEvent: IEvent
