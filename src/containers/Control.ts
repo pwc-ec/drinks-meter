@@ -13,7 +13,6 @@ import * as getEventsQuery from '../graphql/queries/getEvents.gql'
 // ------------------------------------------------------------------------------------------------
 
 interface IContainerProps extends IControlProps {
-  createConsumption: () => void
   history: any
   match: any
 }
@@ -49,6 +48,24 @@ const enhancers = [
       currentEvent: response ? response[0] : null,
       loading,
     }),
+  }),
+
+  graphql<IGraph, IContainerProps>(createConsumptionMutation, {
+    name: 'createConsumption',
+  }),
+
+  withHandlers({
+    onAddConsumption: ({ createConsumption, showError, showSuccess }) => menuBeverageId => {
+      console.log('------- VLADR: menuBeverageId', menuBeverageId)
+      createConsumption({ variables: { consumedAt: new Date(), menuBeverageId } })
+        .then(response => {
+          showSuccess('Consumption added')
+        })
+        .catch(err => {
+          showError('Failed to add consumption')
+          console.error(`Failed to add consumption for menu beverage id=${menuBeverageId}`, err)
+        })
+    },
   }),
 ]
 

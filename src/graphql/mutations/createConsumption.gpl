@@ -1,9 +1,0 @@
-mutation createConsumption($consumedAt: String!, $menuBeverageId: ID!)
-  createConsumption(
-    consumedAt: $consumedAt, 
-    menuBeverageId: $menuBeverageId, 
-    userId: null
-  ) {
-    id
-  }
-}

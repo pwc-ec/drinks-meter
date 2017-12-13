@@ -31,9 +31,9 @@ const styles = theme => ({
 })
 
 const RoundButton = props => {
-  const { classes, title, subtitle } = props
+  const { classes, onClick, title, subtitle } = props
   return (
-    <ButtonBase focusRipple={true} className={classes.root}>
+    <ButtonBase focusRipple={true} className={classes.root} onClick={onClick}>
       <div className={classes.spacer} />
       <div className={classes.content}>
         <Typography className={classes.title} type="title">

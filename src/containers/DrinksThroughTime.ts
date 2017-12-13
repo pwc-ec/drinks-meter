@@ -83,6 +83,8 @@ const enhancers = [
   graphql<IAllMenuBeveragesResponse, IContainerProps>(getMenuBeveragesQuery, {
     options: ({ eventId, match: { params: { eventUrl } } }) => {
       return {
+        fetchPolicy: 'network-only',
+        pollInterval: 10000,
         variables: {
           eventId,
         },

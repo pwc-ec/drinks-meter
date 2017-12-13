@@ -1,0 +1,8 @@
+mutation createConsumption($consumedAt: DateTime!, $menuBeverageId: ID!) {
+  createConsumption(
+    consumedAt: $consumedAt, 
+    menuBeverageId: $menuBeverageId
+  ) {
+    id
+  }
+}
