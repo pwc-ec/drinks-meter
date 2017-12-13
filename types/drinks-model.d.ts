@@ -1,5 +1,5 @@
 declare interface IEvent {
-  attendance: Number
+  attendance: number
   finishAt: Date
   id : string
   menuBeverages: IMenuBeverage[]
@@ -16,12 +16,12 @@ declare interface IMenuBeverage {
 }
 
 declare interface IBeverage {
-  alcohol: Number
+  alcohol: number
   id: string
   image: string
   name: string
   unit: string
-  volume: Number
+  volume: number
 }
 
 declare interface IConsumption {
