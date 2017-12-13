@@ -69,7 +69,8 @@ const calculatePartyIndex = (event: IEvent) => {
   })
 
   const calculation = array.reduce((a, b) => a + b, 0) / (averageWeight * 0.7)
-  return Math.ceil(calculation / attendance * 1000)
+  const partyIndex = Math.ceil(calculation / attendance * 1000)
+  return partyIndex > 1 ? (partyIndex > 5 ? 5 : partyIndex) : 1
 }
 
 const calculateTotalDrinks = menuBeverages => {
