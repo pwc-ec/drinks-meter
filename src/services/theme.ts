@@ -5,17 +5,9 @@ import 'typeface-roboto'
 
 // define PwC compliance palette and fonts - begin
 
-// const primaryColor = '#602320' // maaroon, rgb(96,35,32)
-// const secondaryColor = '#a32020' // burgundy, rgb(163,32,32)
-// const tertiaryColor = '#e0301e' // red, rgb(224,48,30), used as accent
-
-const primaryColor = '#a32020' // burgundy, rgb(163,32,32)
-const secondaryColor = '#602320' // maaroon, rgb(96,35,32)
-const tertiaryColor = '#e0301e' // red, rgb(224,48,30), used as accent
-
-// const primaryColor = '#e0301e' // red, rgb(224,48,30)
-// const secondaryColor = '#a32020' // burgundy, rgb(163,32,32)
-// const tertiaryColor = '#602320' // maaroon, rgb(96,35,32)
+const primaryColor = '#E34125' // orange
+const secondaryColor = '#282828' // gray
+const tertiaryColor = '#e0301e' // TODO: remove
 
 const roseColor = '#d93954' // rose, rgb(217,57,84)
 const orangeColor = '#d04a02' // orange, rgb(208, 74, 2)
@@ -175,7 +167,8 @@ const theme: IBmaiTheme = createMuiTheme<any>({
       size: '1rem', // main content padding
     },
     palette: {
-      accent: tertiaryColor,
+      accent: primaryColor,
+      background: secondaryColor,
       black: blackColor,
       contrast: whiteColor,
       contrastLight: darken(whiteColor, 0.15),

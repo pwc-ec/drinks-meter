@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
-import Button from 'material-ui/Button'
+import { Button, Grid, List, ListItem, ListItemText, Typography } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
-import Typography from 'material-ui/Typography'
 
-import AppHeader from '../components/AppHeader'
+import Header from '../components/Header'
+import Loader from '../components/Loader'
+import RoundButton from '../components/RoundButton'
 
 export interface IControlProps {
   currentEvent: IEvent
@@ -14,22 +15,40 @@ export interface IControlProps {
 }
 
 const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexGrow: 1,
+  },
   root: {
-    color: theme.bmai.palette.black,
-    padding: theme.bmai.padding.size,
+    background: theme.bmai.palette.background,
+    color: theme.bmai.palette.white,
+    display: 'flex',
+    flexDirection: 'column' as 'column',
+    height: '100%',
+    overflow: 'hidden' as 'hidden',
   },
 })
 
 const Control: React.SFC<IControlProps> = ({ currentEvent, classes, loading }) => (
   <div className={classes.root}>
-    <AppHeader fullname={null} />
+    <Header text={currentEvent ? currentEvent.name : null} back={`/${currentEvent ? currentEvent.url : ''}`} />
     {loading ? (
-      <Typography type="subheading">Loading...</Typography>
+      <Loader />
     ) : (
-      <div>
-        <Typography type="subheading">Control</Typography>
-        <Typography type="subheading">{currentEvent.name}</Typography>
-      </div>
+      <Grid
+        className={classes.container}
+        alignItems="center"
+        direction="row"
+        container={true}
+        justify="center"
+        spacing={40}
+      >
+        {currentEvent.menuBeverages.map(mb => (
+          <Grid className={classes.center} key={mb.id} item={true} xs={2}>
+            <RoundButton title={mb.beverage.name} subtitle={`${mb.beverage.volume} ${mb.beverage.unit}`} />
+          </Grid>
+        ))}
+      </Grid>
     )}
   </div>
 )

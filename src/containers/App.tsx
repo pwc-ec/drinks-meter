@@ -32,14 +32,12 @@ const PropsRoute = ({ component, ...rest }) => {
 
 const App = props => (
   <MuiThemeProvider theme={theme}>
-    <main>
-      <Switch>
-        <Route path="/" component={Events} exact={true} />
-        <Route path="/:eventUrl" component={Event} exact={true} />
-        <Route path="/:eventUrl/dashboard" component={Dashboard} />
-        <Route path="/:eventUrl/control" component={Control} />
-      </Switch>
-    </main>
+    <Switch>
+      <Route path="/" component={Events} exact={true} />
+      <Route path="/:eventUrl" component={Event} exact={true} />
+      <Route path="/:eventUrl/dashboard" component={Dashboard} />
+      <Route path="/:eventUrl/control" component={Control} />
+    </Switch>
     <Snackbar />
   </MuiThemeProvider>
 )

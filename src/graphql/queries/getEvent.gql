@@ -1,7 +1,15 @@
+#import '../fragments/beverageInfo.gql'
 #import '../fragments/eventInfo.gql'
 
-query getEvent($id: ID!) {
-  Event(id: $id) {
+query getEvents($filter: EventFilter) {
+  allEvents(filter: $filter, orderBy: finishAt_DESC) {
     ...eventInfo
+    menuBeverages {
+      id
+      ...beverageInfo
+      consumptions {
+        consumedAt
+      }
+    }
   }
 }

@@ -1,0 +1,9 @@
+fragment beverageInfo on Beverage {
+  alcohol
+  color
+  id
+  image
+  name
+  unit
+  volume
+}

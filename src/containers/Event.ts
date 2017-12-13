@@ -39,7 +39,7 @@ const enhancers = [
     options: ({ match: { params: { eventUrl } } }) => {
       return {
         variables: {
-          filter: { name: eventUrl },
+          filter: { url: eventUrl },
         },
       }
     },
