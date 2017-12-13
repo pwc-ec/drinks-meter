@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
-import Button from 'material-ui/Button'
+import { Button, Grid, Typography } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
-import Typography from 'material-ui/Typography'
 
-import AppHeader from '../components/AppHeader'
+import Header from '../components/Header'
+import Loader from '../components/Loader'
+import RoundButton from '../components/RoundButton'
 
 export interface IEventProps {
   currentEvent: IEvent
@@ -14,27 +15,45 @@ export interface IEventProps {
 }
 
 const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexGrow: 1,
+  },
   root: {
-    color: theme.bmai.palette.black,
-    padding: theme.bmai.padding.size,
+    background: theme.bmai.palette.background,
+    color: theme.bmai.palette.white,
+    display: 'flex',
+    flexDirection: 'column' as 'column',
+    height: '100%',
+    overflow: 'hidden' as 'hidden',
   },
 })
 
 const Event: React.SFC<IEventProps> = ({ currentEvent, classes, loading }) => (
   <div className={classes.root}>
-    <AppHeader fullname={null} />
+    <Header text={currentEvent ? currentEvent.name : null} back="/" />
     {loading ? (
-      <Typography type="subheading">Loading...</Typography>
+      <Loader />
     ) : (
-      <div>
-        <Typography type="subheading">{currentEvent.name}</Typography>
-        <Button color="primary">
-          <Link to={`/${currentEvent.url}/dashboard`}>Dashboard</Link>
-        </Button>
-        <Button color="primary">
-          <Link to={`/${currentEvent.url}/control`}>Control</Link>
-        </Button>
-      </div>
+      <Grid
+        className={classes.container}
+        alignItems="center"
+        direction="row"
+        container={true}
+        justify="center"
+        spacing={40}
+      >
+        <Grid className={classes.center} item={true} xs={2}>
+          <Link to={`/${currentEvent.url}/dashboard`}>
+            <RoundButton title="Dashboard" />
+          </Link>
+        </Grid>
+        <Grid className={classes.center} item={true} xs={2}>
+          <Link to={`/${currentEvent.url}/control`}>
+            <RoundButton title="Control" />
+          </Link>
+        </Grid>
+      </Grid>
     )}
   </div>
 )

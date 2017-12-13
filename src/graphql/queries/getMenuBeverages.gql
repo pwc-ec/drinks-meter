@@ -1,0 +1,13 @@
+
+query getMenuBeverages($eventId: ID!) {
+  allMenuBeverages(filter: { event: { id: $eventId }}) {
+    beverage {
+      name
+      alcohol
+      unit
+    }
+    consumptions {
+      consumedAt
+    }
+  }
+}

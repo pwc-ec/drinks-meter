@@ -5,15 +5,13 @@ import { withRouter } from 'react-router'
 import { branch, compose, renderComponent, withHandlers, withState } from 'recompose'
 
 import { showErrorSnackbar, showInfoSnackbar, showSuccessSnackbar } from '../actions/snackbars'
-import Control, { IControlProps } from '../components/Control'
+import DrinksTotals, { IDrinksTotalsProps } from '../components/DrinksTotals'
 
-import * as createConsumptionMutation from '../graphql/mutations/createConsumption.gql'
-import * as getEventsQuery from '../graphql/queries/getEvents.gql'
+import * as getMenuBeveragesQuery from '../graphql/queries/getMenuBeverages.gql'
 
 // ------------------------------------------------------------------------------------------------
 
-interface IContainerProps extends IControlProps {
-  createConsumption: () => void
+interface IContainerProps extends IDrinksTotalsProps {
   history: any
   match: any
 }
@@ -37,19 +35,21 @@ const enhancers = [
 
   connect(mapStateToProps, mapDispatchToProps),
 
-  graphql<IallEventsResponse, IContainerProps>(getEventsQuery, {
-    options: ({ match: { params: { eventUrl } } }) => {
+  graphql<IAllMenuBeveragesResponse, IContainerProps>(getMenuBeveragesQuery, {
+    options: ({ eventId, match: { params: { eventUrl } } }) => {
       return {
         variables: {
-          filter: { url: eventUrl },
+          eventId,
         },
       }
     },
-    props: ({ data: { allEvents: response, loading }, ownProps }) => ({
-      currentEvent: response ? response[0] : null,
+    props: ({ data: { allMenuBeverages, loading }, ownProps }) => ({
+      data: allMenuBeverages
+        ? allMenuBeverages.map((mb, i) => ({ name: mb.beverage.name, count: mb.consumptions.length }))
+        : null,
       loading,
     }),
   }),
 ]
 
-export default compose(...enhancers)(Control)
+export default compose(...enhancers)(DrinksTotals)

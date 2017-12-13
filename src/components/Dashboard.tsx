@@ -1,11 +1,13 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
-import Button from 'material-ui/Button'
+import { Button, Grid, IconButton, Typography } from 'material-ui'
+import MenuIcon from 'material-ui-icons/Menu'
 import { withStyles } from 'material-ui/styles'
-import Typography from 'material-ui/Typography'
 
-import AppHeader from '../components/AppHeader'
+import Loader from '../components/Loader'
+import DrinksThroughTime from '../containers/DrinksThroughTime'
+import DrinksTotals from '../containers/DrinksTotals'
 
 export interface IDashboardProps {
   currentEvent: IEvent
@@ -14,21 +16,46 @@ export interface IDashboardProps {
 }
 
 const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexGrow: 1,
+  },
   root: {
-    color: theme.bmai.palette.black,
-    padding: theme.bmai.padding.size,
+    background: theme.bmai.palette.background,
+    color: theme.bmai.palette.white,
+    display: 'flex',
+    flexDirection: 'column' as 'column',
+    height: '100%',
+    overflow: 'hidden' as 'hidden',
   },
 })
 
 const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading }) => (
   <div className={classes.root}>
     {loading ? (
-      <Typography type="subheading">Loading...</Typography>
+      <Loader />
     ) : (
-      <div>
-        <Typography type="subheading">Dashboard</Typography>
-        <Typography type="subheading">{currentEvent.name}</Typography>
-      </div>
+      <Grid
+        className={classes.container}
+        alignItems="center"
+        direction="row"
+        container={true}
+        justify="center"
+        spacing={40}
+      >
+        <Grid className={classes.center} item={true} xs={6}>
+          <DrinksTotals eventId={currentEvent && currentEvent.id} />
+          <DrinksThroughTime eventId={currentEvent && currentEvent.id} />
+        </Grid>
+        <Grid className={classes.center} item={true} xs={6}>
+          <Link to={`/${currentEvent.url}`}>
+            <IconButton className={classes.button} aria-label="Back">
+              <MenuIcon />
+            </IconButton>
+          </Link>
+          <Typography type="subheading">{currentEvent.name}</Typography>
+        </Grid>
+      </Grid>
     )}
   </div>
 )

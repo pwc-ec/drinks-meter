@@ -10,7 +10,7 @@ declare interface IEvent {
 
 declare interface IMenuBeverage {
   beverage: IBeverage
-  consupmtions: IConsumption[]
+  consumptions: IConsumption[]
   event: IEvent
   id: string
 }
@@ -25,7 +25,7 @@ declare interface IBeverage {
 }
 
 declare interface IConsumption {
-  cßonsumedAt: Date
+  consumedAt: Date
   id: string
   menuBeverage: IMenuBeverage
 }
