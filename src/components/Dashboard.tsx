@@ -8,6 +8,7 @@ import MenuIcon from 'material-ui-icons/Menu'
 import { withStyles } from 'material-ui/styles'
 
 import Loader from '../components/Loader'
+import PartyIndex from '../components/PartyIndex'
 import DrinksThroughTime from '../containers/DrinksThroughTime'
 import DrinksTotals from '../containers/DrinksTotals'
 
@@ -89,6 +90,9 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading 
               <Typography type="title" className={classes.title}>
                 Party Index
               </Typography>
+              <Grid>
+                <PartyIndex event={currentEvent} index={1} />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
