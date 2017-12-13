@@ -6,6 +6,7 @@ import MenuIcon from 'material-ui-icons/Menu'
 import { withStyles } from 'material-ui/styles'
 
 import Loader from '../components/Loader'
+import DrinksThroughTime from '../containers/DrinksThroughTime'
 import DrinksTotals from '../containers/DrinksTotals'
 
 export interface IDashboardProps {
@@ -44,6 +45,7 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading 
       >
         <Grid className={classes.center} item={true} xs={6}>
           <DrinksTotals eventId={currentEvent && currentEvent.id} />
+          <DrinksThroughTime eventId={currentEvent && currentEvent.id} />
         </Grid>
         <Grid className={classes.center} item={true} xs={6}>
           <Link to={`/${currentEvent.url}`}>

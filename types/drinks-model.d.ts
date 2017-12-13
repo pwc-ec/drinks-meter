@@ -25,7 +25,7 @@ declare interface IBeverage {
 }
 
 declare interface IConsumption {
-  cßonsumedAt: Date
+  consumedAt: Date
   id: string
   menuBeverage: IMenuBeverage
 }
