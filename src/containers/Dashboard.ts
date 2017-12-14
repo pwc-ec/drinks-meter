@@ -25,6 +25,10 @@ const calcTotalDrinks = event => {
   return event.menuBeverages.map(mb => mb.consumptions.length).reduce((a, b) => a + b, 0)
 }
 
+const calcAverageAlcohol = event => {
+  return [{ name: 'avg', value: 1.5 }, { name: 'max', value: 5 }]
+}
+
 // ------------------------------------------------------------------------------------------------
 
 const enhancers = [
@@ -43,6 +47,7 @@ const enhancers = [
     props: ({ data: { allEvents: response, loading }, ownProps }) => {
       const currentEvent = response ? response[0] : null
       return {
+        averageAlcohol: calcAverageAlcohol(currentEvent),
         currentEvent,
         loading,
         totalDrinks: calcTotalDrinks(currentEvent),

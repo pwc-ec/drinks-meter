@@ -1,6 +1,6 @@
 import { blue, green, grey, indigo, orange, red } from 'material-ui/colors'
 import { createMuiTheme, Theme } from 'material-ui/styles'
-import { darken, lighten } from 'material-ui/styles/colorManipulator'
+import { darken, fade, lighten } from 'material-ui/styles/colorManipulator'
 import 'typeface-roboto'
 
 // define PwC compliance palette and fonts - begin
@@ -32,6 +32,8 @@ const darkWhiteColor = 'rgba(255, 255, 255, 0.88)'
 const faintBlackColor = 'rgba(0, 0, 0, 0.12)'
 const minBlackColor = 'rgba(0, 0, 0, 0.26)'
 const lightGreyColor = '#c1c2c6'
+const borderColor = fade('#fff', 0.25)
+const darkGreyColor = '#404041'
 
 const appHeaderHeight = 64 // px, height of AppHeader component
 
@@ -73,6 +75,7 @@ const theme: IBmaiTheme = createMuiTheme<any>({
       },
     },
     button: {
+      border: `1px solid ${borderColor}`,
       raised: true,
     },
     buttonFloating: {
@@ -172,6 +175,7 @@ const theme: IBmaiTheme = createMuiTheme<any>({
       black: blackColor,
       contrast: whiteColor,
       contrastLight: darken(whiteColor, 0.15),
+      darkGrey: darkGreyColor,
       faintGrey: faintGreyColor,
       gradientBottomRight: 'linear-gradient(to bottom right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9))',
       gradientLeftRight: 'linear-gradient(to right, rgb(138, 203, 205), rgb(211, 235, 235))',

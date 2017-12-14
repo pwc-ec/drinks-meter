@@ -8,12 +8,16 @@ import MenuIcon from 'material-ui-icons/Menu'
 import { withStyles } from 'material-ui/styles'
 
 import Loader from '../components/Loader'
+import PieBar from '../components/PieBar'
 import RoundCounter from '../components/RoundCounter'
 import DrinksThroughTime from '../containers/DrinksThroughTime'
 import DrinksTotals from '../containers/DrinksTotals'
 import PartyIndex from '../containers/PartyIndex'
 
+import { default as drinksTheme } from '../services/theme'
+
 export interface IDashboardProps {
+  averageAlcohol: number
   currentEvent: IEvent
   classes: any
   loading: boolean
@@ -57,7 +61,7 @@ const styles = theme => ({
   },
 })
 
-const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading, totalDrinks }) => (
+const Dashboard: React.SFC<IDashboardProps> = ({ averageAlcohol, currentEvent, classes, loading, totalDrinks }) => (
   <div className={classes.root}>
     {loading ? (
       <Loader />
@@ -127,6 +131,17 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading,
                       bigNumber={currentEvent.attendance}
                       title="People Counter"
                       subtitle="People on Event"
+                    />
+                  </Grid>
+                  <Grid xs={3} item={true}>
+                    <PieBar
+                      colors={[drinksTheme.bmai.palette.contrast, drinksTheme.bmai.palette.darkGrey]}
+                      data={averageAlcohol}
+                      width={200}
+                      height={200}
+                      size={10}
+                      subtitle="In Blood of Person"
+                      title="Average alcohol"
                     />
                   </Grid>
                 </Grid>

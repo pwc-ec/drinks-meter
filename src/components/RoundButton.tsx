@@ -9,7 +9,7 @@ const styles = theme => ({
     position: 'absolute' as 'absolute',
   },
   root: {
-    border: `1px solid ${fade('#fff', 0.25)}`,
+    border: theme.bmai.button.border,
     borderRadius: '50%',
     color: theme.bmai.palette.accent,
     padding: 0,
