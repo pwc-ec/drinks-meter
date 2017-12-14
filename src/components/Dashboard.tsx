@@ -137,8 +137,6 @@ const Dashboard: React.SFC<IDashboardProps> = ({ averageAlcohol, currentEvent, c
                     <PieBar
                       colors={[drinksTheme.bmai.palette.contrast, drinksTheme.bmai.palette.darkGrey]}
                       data={averageAlcohol}
-                      width={200}
-                      height={200}
                       size={10}
                       subtitle="In Blood of Person"
                       title="Average alcohol"

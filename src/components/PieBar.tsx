@@ -10,12 +10,10 @@ export interface IPieBarProps {
   classes?: any
   colors?: string[]
   data: any
-  height: number
   size: number
   subtitle?: string
   text?: string
   title?: string
-  width: number
 }
 
 const styles = theme => ({
@@ -30,9 +28,9 @@ const styles = theme => ({
     fontWeight: 500 as 500,
   },
   root: {
-    height: '100%',
+    height: '10rem',
     textAlign: 'center',
-    width: '100%',
+    width: '10rem',
   },
   spacer: {
     // paddingBottom: '100%',
@@ -55,21 +53,19 @@ const PieBar: React.SFC<IPieBarProps> = ({
   classes,
   colors = defaultColors,
   data,
-  height = 200,
   size = 10,
   subtitle = '',
   text = '',
   title = '',
-  width = 200,
 }) => (
   <div className={classes.root}>
     <ResponsiveContainer>
       <PieChart className={classes.content}>
-        <Pie data={data} innerRadius="80%" outerRadius="100%" paddingAngle={0}>
-          {/* {data.map((entry, index) => (
+        <Pie data={data} dataKey="value" innerRadius={`${100 - size}%`} outerRadius="100%" paddingAngle={0}>
+          {data.map((entry, index) => (
             <Cell key={'pbc-' + index} fill={colors[index % colors.length]} strokeWidth={0} />
           ))}
-          <Label className={classes.label} position="center" value={text || (data && data[0] && data[0].value)} /> */}
+          <Label className={classes.label} position="center" value={text || (data && data[0] && data[0].value)} />
         </Pie>
       </PieChart>
     </ResponsiveContainer>
