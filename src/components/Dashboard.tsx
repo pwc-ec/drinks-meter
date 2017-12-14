@@ -8,9 +8,10 @@ import MenuIcon from 'material-ui-icons/Menu'
 import { withStyles } from 'material-ui/styles'
 
 import Loader from '../components/Loader'
+import PartyIndex from '../components/PartyIndex'
+import RoundCounter from '../components/RoundCounter'
 import DrinksThroughTime from '../containers/DrinksThroughTime'
 import DrinksTotals from '../containers/DrinksTotals'
-import PartyIndex from '../containers/PartyIndex'
 
 export interface IDashboardProps {
   currentEvent: IEvent
@@ -54,6 +55,27 @@ const styles = theme => ({
     fontWeight: 200 as 200,
   },
 })
+
+const calculatePartyIndex = (event: IEvent) => {
+  const attendance = event.attendance
+  const menuBeverages = event.menuBeverages
+  const averageWeight = 75
+
+  const array = event.menuBeverages.map((mb: IMenuBeverage) => {
+    const alcohol: number = mb.beverage.alcohol
+    const volume: number = mb.beverage.volume
+    const consumptions: number = mb.consumptions.length
+    return consumptions * alcohol * volume * 0.08
+  })
+
+  const calculation = array.reduce((a, b) => a + b, 0) / (averageWeight * 0.7)
+  const partyIndex = Math.ceil(calculation / attendance * 1000)
+  return partyIndex > 1 ? (partyIndex > 5 ? 5 : partyIndex) : 1
+}
+
+const calculateTotalDrinks = menuBeverages => {
+  return menuBeverages.map(mb => mb.consumptions.length).reduce((a, b) => a + b, 0)
+}
 
 const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading }) => (
   <div className={classes.root}>
@@ -105,15 +127,33 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading 
         <Grid className={classes.fullHeight} item={true} xs={true}>
           <Grid className={classes.fullHeight} container={true} xs={true} spacing={0} direction="column">
             <Grid className={cn(classes.borderBottom, classes.cell)} item={true} xs={true}>
-              <Grid container={true} direction="row" alignItems="center">
-                <Link to={`/${currentEvent.url}`} className={classes.button}>
-                  <IconButton className={classes.button} aria-label="Back">
-                    <MenuIcon />
-                  </IconButton>
-                </Link>
-                <Typography type="title" className={classes.title}>
-                  {currentEvent.name}
-                </Typography>
+              <Grid className={classes.fullHeight} container={true} direction="column" spacing={0} xs={true}>
+                <Grid container={true} direction="row" alignItems="center">
+                  <Link to={`/${currentEvent.url}`} className={classes.button}>
+                    <IconButton className={classes.button} aria-label="Back">
+                      <MenuIcon />
+                    </IconButton>
+                  </Link>
+                  <Typography type="title" className={classes.title}>
+                    {currentEvent.name}
+                  </Typography>
+                </Grid>
+                <Grid container={true} direction="row" justify="center" alignItems="center" xs={true}>
+                  <Grid item={true} xs={3}>
+                    <RoundCounter
+                      bigNumber={calculateTotalDrinks(currentEvent.menuBeverages)}
+                      title="Total Drinks"
+                      subtitle="Used on Event"
+                    />
+                  </Grid>
+                  <Grid item={true} xs={3}>
+                    <RoundCounter
+                      bigNumber={currentEvent.attendance}
+                      title="People Counter"
+                      subtitle="People on Event"
+                    />
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
             <Grid className={classes.cell} item={true} xs={true}>
@@ -123,7 +163,7 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading 
                 </Typography>
                 <Grid container={true} alignItems="flex-end" justify="flex-end" xs={true}>
                   <Grid item={true}>
-                    <PartyIndex event={currentEvent} index={1} />
+                    <PartyIndex imageUrl={currentEvent.url} index={calculatePartyIndex(currentEvent)} />
                   </Grid>
                 </Grid>
               </Grid>
