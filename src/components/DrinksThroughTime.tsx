@@ -44,7 +44,7 @@ const DrinksThroughTime: React.SFC<IDrinksThroughTimeProps> = ({ classes, data }
                   dataKey={vn}
                   fill={colors[index]}
                   stroke={colors[index]}
-                  strokeWidth={5}
+                  strokeWidth={3}
                   type="monotone"
                 />
               ))
