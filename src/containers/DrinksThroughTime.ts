@@ -20,18 +20,6 @@ interface IContainerProps extends IDrinksThroughTimeProps {
 
 // ------------------------------------------------------------------------------------------------
 
-const mapStateToProps = (state: IRootState) => {
-  return {}
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  showError: msg => dispatch(showErrorSnackbar(msg)),
-  showInfo: msg => dispatch(showInfoSnackbar(msg)),
-  showSuccess: msg => dispatch(showSuccessSnackbar(msg)),
-})
-
-// ------------------------------------------------------------------------------------------------
-
 const mapConsumptionToTimeSeries = (menuBeverages: IMenuBeverage[]) => {
   if (!menuBeverages) {
     return
@@ -39,6 +27,7 @@ const mapConsumptionToTimeSeries = (menuBeverages: IMenuBeverage[]) => {
 
   const result = []
 
+  // normalize consumption by 15 minutes time slots
   const consumptions: any[] = []
   menuBeverages.forEach(mb => {
     mb.consumptions.forEach(con => {
@@ -66,14 +55,19 @@ const mapConsumptionToTimeSeries = (menuBeverages: IMenuBeverage[]) => {
     })
   })
 
+  // filter consupmtion for last 3 hours
   const threeHoursAgo = moment().subtract(3, 'hours')
   // console.log('------- VLADR: threeHoursAgo', threeHoursAgo)
 
-  const lastThreeHoursConsumptions = consumptions.filter(c => threeHoursAgo.isSameOrBefore(c._timeStamp))
+  const lastThreeHoursConsumptions = consumptions
+    .sort((c1, c2) => c1._timeStamp - c2._timeStamp)
+    .filter(c => threeHoursAgo.isSameOrBefore(c._timeStamp))
 
+  // group consumptions by time slots
   const timeGroups = _.groupBy(lastThreeHoursConsumptions, con => con.time)
   // console.log(timeGroups)
 
+  // count individual drink consumption in each time slot
   for (const prop in timeGroups) {
     if (!timeGroups[prop]) {
       continue
@@ -98,33 +92,10 @@ const mapConsumptionToTimeSeries = (menuBeverages: IMenuBeverage[]) => {
 // ------------------------------------------------------------------------------------------------
 
 const enhancers = [
-  withRouter,
-
-  connect(mapStateToProps, mapDispatchToProps),
-
   mapProps(({ menuBeverages, ...rest }) => ({
     data: mapConsumptionToTimeSeries(menuBeverages),
     ...rest,
   })),
-
-  // graphql<IAllMenuBeveragesResponse, IContainerProps>(getMenuBeveragesQuery, {
-  //   options: ({ eventId, match: { params: { eventUrl } } }) => {
-  //     return {
-  //       fetchPolicy: 'network-only',
-  //       pollInterval: 10000,
-  //       variables: {
-  //         eventId,
-  //       },
-  //     }
-  //   },
-  //   props: ({ data: { allMenuBeverages, loading }, ownProps }) => {
-  //     const timeSeries = mapConsumptionToTimeSeries(allMenuBeverages)
-  //     return {
-  //       data: timeSeries,
-  //       loading,
-  //     }
-  //   },
-  // }),
 ]
 
 export default compose(...enhancers)(DrinksThroughTime)
