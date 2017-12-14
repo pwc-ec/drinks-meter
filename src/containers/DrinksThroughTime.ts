@@ -56,16 +56,18 @@ const mapConsumptionToTimeSeries = (menuBeverages: IMenuBeverage[]) => {
   })
 
   // filter consupmtion for last 3 hours
-  const threeHoursAgo = moment().subtract(3, 'hours')
-  // console.log('------- VLADR: threeHoursAgo', threeHoursAgo)
+  const lastThreeHoursConsumptions = consumptions.sort((c1, c2) => c1._timeStamp - c2._timeStamp)
 
-  const lastThreeHoursConsumptions = consumptions
-    .sort((c1, c2) => c1._timeStamp - c2._timeStamp)
-    .filter(c => threeHoursAgo.isSameOrBefore(c._timeStamp))
+  if (lastThreeHoursConsumptions.length) {
+    const threeHoursAgo = moment(lastThreeHoursConsumptions[lastThreeHoursConsumptions.length - 1]._timeStamp).subtract(
+      3,
+      'hours',
+    )
+    lastThreeHoursConsumptions.filter(c => threeHoursAgo.isSameOrBefore(c._timeStamp))
+  }
 
   // group consumptions by time slots
   const timeGroups = _.groupBy(lastThreeHoursConsumptions, con => con.time)
-  // console.log(timeGroups)
 
   // count individual drink consumption in each time slot
   for (const prop in timeGroups) {
@@ -73,9 +75,7 @@ const mapConsumptionToTimeSeries = (menuBeverages: IMenuBeverage[]) => {
       continue
     }
 
-    const entry: any = {
-      time: prop,
-    }
+    const entry: any = { time: prop }
 
     timeGroups[prop].forEach((con: any) => {
       entry[con.name] = entry[con.name] ? entry[con.name] + 1 : 1
