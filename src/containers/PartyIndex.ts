@@ -12,7 +12,20 @@ import * as getMenuBeveragesQuery from '../graphql/queries/getMenuBeverages.gql'
 // ------------------------------------------------------------------------------------------------
 
 const calcPartyIndex = (event: IEvent) => {
-  return 1
+  const attendance = event.attendance
+  const menuBeverages = event.menuBeverages
+  const averageWeight = 75
+
+  const array = event.menuBeverages.map((mb: IMenuBeverage) => {
+    const alcohol: number = mb.beverage.alcohol
+    const volume: number = mb.beverage.volume
+    const consumptions: number = mb.consumptions.length
+    return consumptions * alcohol * volume * 0.08
+  })
+
+  const calculation = array.reduce((a, b) => a + b, 0) / (averageWeight * 0.7)
+  const partyIndex = Math.ceil(calculation / attendance * 1000)
+  return partyIndex > 1 ? (partyIndex > 5 ? 5 : partyIndex) : 1
 }
 
 // ------------------------------------------------------------------------------------------------

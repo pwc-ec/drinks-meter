@@ -18,22 +18,17 @@ interface IContainerProps extends IDashboardProps {
 
 // ------------------------------------------------------------------------------------------------
 
-const mapStateToProps = (state: IRootState) => {
-  return {}
+const calcTotalDrinks = event => {
+  if (!event) {
+    return 0
+  }
+  return event.menuBeverages.map(mb => mb.consumptions.length).reduce((a, b) => a + b, 0)
 }
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  showError: msg => dispatch(showErrorSnackbar(msg)),
-  showInfo: msg => dispatch(showInfoSnackbar(msg)),
-  showSuccess: msg => dispatch(showSuccessSnackbar(msg)),
-})
 
 // ------------------------------------------------------------------------------------------------
 
 const enhancers = [
   withRouter,
-
-  connect(mapStateToProps, mapDispatchToProps),
 
   graphql<IallEventsResponse, IContainerProps>(getEventsQuery, {
     options: ({ match: { params: { eventUrl } } }) => {
@@ -45,10 +40,14 @@ const enhancers = [
         },
       }
     },
-    props: ({ data: { allEvents: response, loading }, ownProps }) => ({
-      currentEvent: response ? response[0] : null,
-      loading,
-    }),
+    props: ({ data: { allEvents: response, loading }, ownProps }) => {
+      const currentEvent = response ? response[0] : null
+      return {
+        currentEvent,
+        loading,
+        totalDrinks: calcTotalDrinks(currentEvent),
+      }
+    },
   }),
 ]
 

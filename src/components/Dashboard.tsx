@@ -8,15 +8,16 @@ import MenuIcon from 'material-ui-icons/Menu'
 import { withStyles } from 'material-ui/styles'
 
 import Loader from '../components/Loader'
-import PartyIndex from '../components/PartyIndex'
 import RoundCounter from '../components/RoundCounter'
 import DrinksThroughTime from '../containers/DrinksThroughTime'
 import DrinksTotals from '../containers/DrinksTotals'
+import PartyIndex from '../containers/PartyIndex'
 
 export interface IDashboardProps {
   currentEvent: IEvent
   classes: any
   loading: boolean
+  totalDrinks: number
 }
 
 const styles = theme => ({
@@ -56,28 +57,7 @@ const styles = theme => ({
   },
 })
 
-const calculatePartyIndex = (event: IEvent) => {
-  const attendance = event.attendance
-  const menuBeverages = event.menuBeverages
-  const averageWeight = 75
-
-  const array = event.menuBeverages.map((mb: IMenuBeverage) => {
-    const alcohol: number = mb.beverage.alcohol
-    const volume: number = mb.beverage.volume
-    const consumptions: number = mb.consumptions.length
-    return consumptions * alcohol * volume * 0.08
-  })
-
-  const calculation = array.reduce((a, b) => a + b, 0) / (averageWeight * 0.7)
-  const partyIndex = Math.ceil(calculation / attendance * 1000)
-  return partyIndex > 1 ? (partyIndex > 5 ? 5 : partyIndex) : 1
-}
-
-const calculateTotalDrinks = menuBeverages => {
-  return menuBeverages.map(mb => mb.consumptions.length).reduce((a, b) => a + b, 0)
-}
-
-const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading }) => (
+const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading, totalDrinks }) => (
   <div className={classes.root}>
     {loading ? (
       <Loader />
@@ -140,11 +120,7 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading 
                 </Grid>
                 <Grid container={true} direction="row" justify="center" alignItems="center" xs={true}>
                   <Grid item={true} xs={3}>
-                    <RoundCounter
-                      bigNumber={calculateTotalDrinks(currentEvent.menuBeverages)}
-                      title="Total Drinks"
-                      subtitle="Used on Event"
-                    />
+                    <RoundCounter bigNumber={totalDrinks} title="Total Drinks" subtitle="Used on Event" />
                   </Grid>
                   <Grid item={true} xs={3}>
                     <RoundCounter
@@ -163,7 +139,7 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading 
                 </Typography>
                 <Grid container={true} alignItems="flex-end" justify="flex-end" xs={true}>
                   <Grid item={true}>
-                    <PartyIndex imageUrl={currentEvent.url} index={calculatePartyIndex(currentEvent)} />
+                    <PartyIndex event={currentEvent} />
                   </Grid>
                 </Grid>
               </Grid>
