@@ -56,14 +56,14 @@ const mapConsumptionToTimeSeries = (menuBeverages: IMenuBeverage[]) => {
   })
 
   // filter consupmtion for last 3 hours
-  const lastThreeHoursConsumptions = consumptions.sort((c1, c2) => c1._timeStamp - c2._timeStamp)
+  let lastThreeHoursConsumptions = consumptions.sort((c1, c2) => c1._timeStamp - c2._timeStamp)
 
   if (lastThreeHoursConsumptions.length) {
     const threeHoursAgo = moment(lastThreeHoursConsumptions[lastThreeHoursConsumptions.length - 1]._timeStamp).subtract(
       3,
       'hours',
     )
-    lastThreeHoursConsumptions.filter(c => threeHoursAgo.isSameOrBefore(c._timeStamp))
+    lastThreeHoursConsumptions = lastThreeHoursConsumptions.filter(c => threeHoursAgo.isSameOrBefore(c._timeStamp))
   }
 
   // group consumptions by time slots
