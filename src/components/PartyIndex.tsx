@@ -44,16 +44,19 @@ const styles = theme => ({
   },
 })
 
-const PartyIndex = props => {
-  const { classes, event, index } = props
-  return (
-    <div className={classes.root} style={{ backgroundImage: `url(${getPartyIndexImage(event.url, index)})` }}>
-      <Typography className={classes.index} type="title">
-        {index}
-      </Typography>
-      <div className={classes.spacer} />
-    </div>
-  )
+export interface IPartyIndexProps {
+  classes?: any
+  imageUrl: string
+  index: number
 }
+
+const PartyIndex: React.SFC<IPartyIndexProps> = ({ classes, imageUrl, index }) => (
+  <div className={classes.root} style={{ backgroundImage: `url(${getPartyIndexImage(imageUrl, index.toString())})` }}>
+    <Typography className={classes.index} type="title">
+      {index}
+    </Typography>
+    <div className={classes.spacer} />
+  </div>
+)
 
 export default withStyles(styles)(PartyIndex)
