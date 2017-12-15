@@ -18,7 +18,26 @@ interface IContainerProps extends IDashboardProps {
 
 // ------------------------------------------------------------------------------------------------
 
-const calcTotalDrinks = event => {
+const calcAverageAlcohol = (event: IEvent) => {
+  if (!event) {
+    return 0
+  }
+  const attendance = event.attendance
+  const menuBeverages = event.menuBeverages
+  const averageWeight = 75
+
+  const array = event.menuBeverages.map((mb: IMenuBeverage) => {
+    const alcohol: number = mb.beverage.alcohol
+    const volume: number = mb.beverage.volume
+    const consumptions: number = mb.consumptions.length
+    return consumptions * alcohol * volume * 0.008
+  })
+
+  const calculation = array.reduce((a, b) => a + b, 0) / (averageWeight * attendance * 0.65)
+  return (calculation * 1000).toFixed(2)
+}
+
+const calcTotalDrinks = (event: IEvent) => {
   if (!event) {
     return 0
   }
@@ -43,6 +62,7 @@ const enhancers = [
     props: ({ data: { allEvents: response, loading }, ownProps }) => {
       const currentEvent = response ? response[0] : null
       return {
+        averageAlcohol: calcAverageAlcohol(currentEvent),
         currentEvent,
         loading,
         totalDrinks: calcTotalDrinks(currentEvent),

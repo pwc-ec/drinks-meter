@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
+import * as cn from 'classnames'
+
 import { Button, Grid, List, ListItem, ListItemText, Typography } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
 
@@ -25,6 +27,7 @@ const styles = theme => ({
     overflow: 'hidden' as 'hidden',
   },
   wrapper: {
+    height: '100%',
     paddingLeft: '2rem',
     paddingRight: '2rem',
   },
@@ -43,11 +46,11 @@ const Control: React.SFC<IControlProps> = ({ currentEvent, classes, loading, onA
         container={true}
         justify="center"
         spacing={40}
-        xs={true}
       >
         {currentEvent.menuBeverages.map(mb => (
           <Grid className={classes.center} key={mb.id} item={true} xs={2}>
             <RoundButton
+              isDisabled={new Date().getTime() > new Date(currentEvent.finishAt).getTime()}
               title={mb.beverage.name}
               subtitle={`${mb.beverage.volume} ${mb.beverage.unit}`}
               onClick={() => onAddConsumption(mb.id)}

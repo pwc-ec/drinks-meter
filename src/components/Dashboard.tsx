@@ -14,6 +14,7 @@ import DrinksTotals from '../containers/DrinksTotals'
 import PartyIndex from '../containers/PartyIndex'
 
 export interface IDashboardProps {
+  averageAlcohol: number
   currentEvent: IEvent
   classes: any
   loading: boolean
@@ -57,7 +58,7 @@ const styles = theme => ({
   },
 })
 
-const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading, totalDrinks }) => (
+const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading, averageAlcohol, totalDrinks }) => (
   <div className={classes.root}>
     {loading ? (
       <Loader />
@@ -119,6 +120,9 @@ const Dashboard: React.SFC<IDashboardProps> = ({ currentEvent, classes, loading,
                   </Typography>
                 </Grid>
                 <Grid container={true} direction="row" justify="center" alignItems="center" xs={true}>
+                  <Grid item={true} xs={3}>
+                    <RoundCounter bigNumber={averageAlcohol} title="Average Alcohol" subtitle="In Blood of Person" />
+                  </Grid>
                   <Grid item={true} xs={3}>
                     <RoundCounter bigNumber={totalDrinks} title="Total Drinks" subtitle="Used on Event" />
                   </Grid>

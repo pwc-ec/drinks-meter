@@ -20,12 +20,21 @@ const calcPartyIndex = (event: IEvent) => {
     const alcohol: number = mb.beverage.alcohol
     const volume: number = mb.beverage.volume
     const consumptions: number = mb.consumptions.length
-    return consumptions * alcohol * volume * 0.08
+    return consumptions * alcohol * volume * 0.008
   })
 
-  const calculation = array.reduce((a, b) => a + b, 0) / (averageWeight * 0.7)
-  const partyIndex = Math.ceil(calculation / attendance * 1000)
-  return partyIndex > 1 ? (partyIndex > 5 ? 5 : partyIndex) : 1
+  const calculation = array.reduce((a, b) => a + b, 0) / (averageWeight * attendance * 0.65) * 1000
+  const partyIndex = calculation
+
+  const normalize = 1 - (3 - Math.min(partyIndex, 3)) / 3
+
+  if (!normalize) {
+    return 1
+  }
+
+  const logit = Math.log(normalize / (1 - normalize)) / Math.log(10000)
+  const result = Math.ceil(logit * 10 + 2.5)
+  return result < 6 ? result : 5
 }
 
 // ------------------------------------------------------------------------------------------------

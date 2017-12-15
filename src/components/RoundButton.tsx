@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import * as cn from 'classnames'
+
 import { ButtonBase, Typography } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
 import { fade } from 'material-ui/styles/colorManipulator'
@@ -7,6 +9,9 @@ import { fade } from 'material-ui/styles/colorManipulator'
 const styles = theme => ({
   content: {
     position: 'absolute' as 'absolute',
+  },
+  disabled: {
+    opacity: 0.5,
   },
   root: {
     border: `1px solid ${fade('#fff', 0.25)}`,
@@ -31,9 +36,14 @@ const styles = theme => ({
 })
 
 const RoundButton = props => {
-  const { classes, onClick, title, subtitle } = props
+  const { classes, isDiasabled, onClick, title, subtitle } = props
   return (
-    <ButtonBase focusRipple={true} className={classes.root} onClick={onClick}>
+    <ButtonBase
+      focusRipple={true}
+      className={cn({ [classes.root]: true, [classes.disabled]: isDiasabled })}
+      disabled={isDiasabled}
+      onClick={onClick}
+    >
       <div className={classes.spacer} />
       <div className={classes.content}>
         <Typography className={classes.title} type="title">
